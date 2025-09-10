@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Events | Hearts & Plates - Professional Event Management</title>
+    <meta name="description" content="Host your corporate events, meetings, and conferences at Hearts & Plates. Professional venue with modern amenities, catering, and event management services.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/icons/favicon.ico">
+    
+    <style>
+        .corporate-hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), 
+                        url('../assets/images/gallery/corporate-setup.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            margin-top: 80px;
+        }
+        
+        .corporate-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 70%, rgba(212, 175, 55, 0.15) 0%, transparent 50%);
+        }
+        
+        .corporate-hero-content {
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+        
+        .corporate-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .services-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .service-showcase-card {
+            background: var(--glass);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-showcase-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-showcase-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-showcase-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+        }
+        
+        .service-showcase-card .icon {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .venue-specs {
+            background: var(--gradient-dark);
+            padding: 4rem 0;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .spec-card {
+            background: var(--glass);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        
+        .spec-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+        
+        .spec-label {
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+        
+        .amenities-section {
+            padding: 4rem 0;
+        }
+        
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .amenity-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--glass);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        
+        .amenity-item:hover {
+            border-color: var(--primary);
+            transform: translateX(5px);
+        }
+        
+        .amenity-item .icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            width: 30px;
+            text-align: center;
+        }
+        
+        .event-types {
+            background: var(--surface);
+            padding: 4rem 0;
+        }
+        
+        .event-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .event-type-card {
+            background: var(--glass);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .event-type-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .event-type-card .header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .event-type-card .icon {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .event-type-card h3 {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+        }
+        
+        .event-features {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .event-features li {
+            padding: 0.25rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .event-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        .pricing-corporate {
+            padding: 4rem 0;
+            background: var(--background);
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .pricing-card {
+            background: var(--glass);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            text-align: center;
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: var(--background);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+        
+        .pricing-card .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+        
+        .pricing-card .duration {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .booking-form-corporate {
+            background: var(--gradient-dark);
+            padding: 4rem 0;
+        }
+        
+        .form-corporate {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--glass);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+        
+        .google-form-corporate {
+            width: 100%;
+            height: 900px;
+            border: none;
+            border-radius: 12px;
+            background: white;
+        }
+        
+        .testimonials {
+            padding: 4rem 0;
+            background: var(--surface);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .testimonial-card {
+            background: var(--glass);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--primary);
+            font-family: serif;
+        }
+        
+        .testimonial-text {
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 1rem;
+            padding-top: 1rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .author-info h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .author-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .contact-cta {
+            background: var(--gradient-primary);
+            color: var(--background);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .contact-cta h2,
+        .contact-cta p {
+            color: var(--background);
+        }
+        
+        .contact-options {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .contact-btn {
+            background: rgba(15, 15, 15, 0.2);
+            color: var(--background);
+            border: 2px solid rgba(15, 15, 15, 0.3);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .contact-btn:hover {
+            background: var(--background);
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">Hearts & Plates</a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="birthday.html">Birthday Hall</a></li>
+                <li><a href="corporate.html" class="active">Corporate Events</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Corporate Hero Section -->
+    <section class="corporate-hero">
+        <div class="corporate-hero-content">
+            <h1 class="font-display">Corporate Events & Meetings</h1>
+            <p class="hero-subtitle">Professional venues with exceptional service for your business needs</p>
+            <p class="hero-description">
+                From intimate board meetings to large conferences, we provide the perfect setting with 
+                modern amenities, professional catering, and dedicated event management to ensure your 
+                corporate events are successful and memorable.
+            </p>
+        </div>
+    </section>
+
+    <!-- Services Showcase -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title font-display">Professional Event Solutions</h2>
+                <p class="section-subtitle">Comprehensive services tailored for corporate excellence</p>
+            </div>
+            
+            <div class="services-showcase">
+                <div class="service-showcase-card">
+                    <div class="icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Team Meetings</h3>
+                    <p>Intimate spaces perfect for team discussions, brainstorming sessions, and departmental meetings with professional ambiance.</p>
+                </div>
+                
+                <div class="service-showcase-card">
+                    <div class="icon">
+                        <i class="fas fa-presentation"></i>
+                    </div>
+                    <h3>Conferences & Seminars</h3>
+                    <p>Large venues equipped with modern AV equipment, projection systems, and professional lighting for impactful presentations.</p>
+                </div>
+                
+                <div class="service-showcase-card">
+                    <div class="icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Client Meetings</h3>
+                    <p>Elegant private dining rooms that create the perfect atmosphere for client entertainment and business discussions.</p>
+                </div>
+                
+                <div class="service-showcase-card">
+                    <div class="icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Award Ceremonies</h3>
+                    <p>Sophisticated venues with stage setups, lighting, and sound systems perfect for recognition events and celebrations.</p>
+                </div>
+                
+                <div class="service-showcase-card">
+                    <div class="icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Product Launches</h3>
+                    <p>Dynamic spaces with flexible layouts and professional presentation capabilities to showcase your latest innovations.</p>
+                </div>
+                
+                <div class="service-showcase-card">
+                    <div class="icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Training Sessions</h3>
+                    <p>Comfortable learning environments with proper seating, lighting, and technology for effective corporate training programs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue Specifications -->
+    <section class="venue-specs">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title font-display">Venue Specifications</h2>
+                <p class="section-subtitle">Modern facilities designed for professional events</p>
+            </div>
+            
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <span class="spec-value">150</span>
+                    <p class="spec-label">Maximum Capacity</p>
+                </div>
+                <div class="spec-card">
+                    <span class="spec-value">3</span>
+                    <p class="spec-label">Event Halls Available</p>
+                </div>
+                <div class="spec-card">
+                    <span class="spec-value">10+</span>
+                    <p class="spec-label">Years of Experience</p>
+                </div>
+                <div class="spec-card">
+                    <span class="spec-value">24/7</span>
+                    <p class="spec-label">Support Available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section class="amenities-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title font-display">Modern Amenities</h2>
+                <p class="section-subtitle">Everything you need for a successful corporate event</p>
+            </div>
+            
+            <div class="amenities-grid">
+                <div class="amenity-item">
+                    <div class="icon"><i class="fas fa-wifi"></i></div>
+                    <div>
+                        <h4>High-Speed WiFi</h4>
+                        <p>Reliable internet connection for all attendees</p>
+                    </div>
+                </div>
+                
+                <div class="amenity-item">
+                    <div class="icon"><i class="fas fa-tv"></i></div>
+                    <div>
+                        <h4>Audio/Visual Equipment</h4>
+                        <p>Projectors, screens, sound systems, and microphones</p>
+                    </div>
+                </div>
+                
+                <div class="amenity-item">
+                    <div class="icon"><i class="fas fa-snowflake"></i></div>
+                    <div>
+                        <h4>Climate Control</h4>
+                        <p>Comfortable temperature control in all venues</p>
+                    </div>
+                </div>
+                
+                <div class="amenity-item">
+                    <div class="icon"><i class="fas fa-car"></i></div>
+                    <div>
+                        <h4>Valet Parking</h4>
+                        <p>Complimentary parking service for all guests</p>
+                    </div>
+                </div>
+                
+                <div class="amenity-item">
+                    <div class="icon"><i class="fas fa-utensils"></i></div>
+                    <div>
+                        <h4>Catering Services</h4>
+                        <p>Professional menu options and beverage service</p>
+                    </div>
+                </div>
+                
+                <div class="amenity-item">
+                    <div class="icon"><i class="fas fa-headset"></i></div>
+                    <div>
+                        <h4>Event Coordination</h4>
+                        <p>Dedicated event manager for seamless execution</p>
+                    </div>
+                </div>
+                
+                <div class="amenity-item">
+                    <div class="icon"><i class="fas fa-camera"></i></div>
+                    <div>
+                        <h4>Photography Setup</h4>
+                        <p>Professional lighting and backdrop areas</p>
+                    </div>
+                </div>
+                
+                <div class="amenity-item">
+                    <div class="icon"><i class="fas fa-clipboard-list"></i></div>
+                    <div>
+                        <h4>Registration Desk</h4>
+                        <p>Welcome area with check-in facilities</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Types -->
+    <section class="event-types">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title font-display">Event Types We Host</h2>
+                <p class="section-subtitle">Tailored solutions for every corporate occasion</p>
+            </div>
+            
+            <div class="event-types-grid">
+                <div class="event-type-card">
+                    <div class="header">
+                        <div class="icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>Board Meetings</h3>
+                    </div>
+                    <p>Executive boardroom settings with privacy and professional atmosphere</p>
+                    <ul class="event-features">
+                        <li>10-20 person capacity</li>
+                        <li>Executive seating arrangement</li>
+                        <li>Presentation equipment</li>
+                        <li>Private dining options</li>
+                        <li>Confidential environment</li>
+                    </ul>
+                </div>
+                
+                <div class="event-type-card">
+                    <div class="header">
+                        <div class="icon"><i class="fas fa-bullhorn"></i></div>
+                        <h3>Product Launches</h3>
+                    </div>
+                    <p>Dynamic venues perfect for showcasing new products and innovations</p>
+                    <ul class="event-features">
+                        <li>50-150 person capacity</li>
+                        <li>Stage and lighting setup</li>
+                        <li>Media wall backdrop</li>
+                        <li>Photography area</li>
+                        <li>Cocktail reception space</li>
+                    </ul>
+                </div>
+                
+                <div class="event-type-card">
+                    <div class="header">
+                        <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <h3>Training Programs</h3>
+                    </div>
+                    <p>Comfortable learning environments designed for effective knowledge transfer</p>
+                    <ul class="event-features">
+                        <li>20-100 person capacity</li>
+                        <li>Classroom-style seating</li>
+                        <li>Whiteboard and flip charts</li>
+                        <li>Break-out rooms available</li>
+                        <li>Refreshment service</li>
+                    </ul>
+                </div>
+                
+                <div class="event-type-card">
+                    <div class="header">
+                        <div class="icon"><i class="fas fa-trophy"></i></div>
+                        <h3>Award Ceremonies</h3>
+                    </div>
+                    <p>Elegant venues for recognizing achievements and celebrating success</p>
+                    <ul class="event-features">
+                        <li>50-150 person capacity</li>
+                        <li>Stage with podium</li>
+                        <li>Professional lighting</li>
+                        <li>Sound system with mics</li>
+                        <li>Gala dinner options</li>
+                    </ul>
+                </div>
+                
+                <div class="event-type-card">
+                    <div class="header">
+                        <div class="icon"><i class="fas fa-users-cog"></i></div>
+                        <h3>Team Building</h3>
+                    </div>
+                    <p>Flexible spaces that encourage collaboration and team bonding</p>
+                    <ul class="event-features">
+                        <li>25-80 person capacity</li>
+                        <li>Flexible seating arrangements</li>
+                        <li>Activity space</li>
+                        <li>Team lunch/dinner</li>
+                        <li>Outdoor area access</li>
+                    </ul>
+                </div>
+                
+                <div class="event-type-card">
+                    <div class="header">
+                        <div class="icon"><i class="fas fa-globe"></i></div>
+                        <h3>Conferences</h3>
+                    </div>
+                    <p>Large-scale venues equipped for multi-day corporate conferences</p>
+                    <ul class="event-features">
+                        <li>100-150 person capacity</li>
+                        <li>Theater-style seating</li>
+                        <li>Multi-screen setup</li>
+                        <li>Registration area</li>
+                        <li>Coffee break stations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-corporate">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title font-display">Corporate Packages</h2>
+                <p class="section-subtitle">Flexible pricing options to suit your budget and requirements</p>
+            </div>
+            
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Half-Day Package</h3>
+                    <div class="price">₹25,000</div>
+                    <p class="duration">4 hours | Up to 50 attendees</p>
+                    <ul class="event-features">
+                        <li>Venue rental (4 hours)</li>
+                        <li>Basic AV equipment</li>
+                        <li>WiFi access</li>
+                        <li>Welcome refreshments</li>
+                        <li>One coffee break</li>
+                        <li>Event coordination</li>
+                    </ul>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3>Full-Day Package</h3>
+                    <div class="price">₹45,000</div>
+                    <p class="duration">8 hours | Up to 100 attendees</p>
+                    <ul class="event-features">
+                        <li>Venue rental (8 hours)</li>
+                        <li>Complete AV setup</li>
+                        <li>High-speed WiFi</li>
+                        <li>Welcome breakfast</li>
+                        <li>Two coffee breaks</li>
+                        <li>Business lunch</li>
+                        <li>Dedicated event manager</li>
+                        <li>Photography setup</li>
+                    </ul>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Premium Package</h3>
+                    <div class="price">₹75,000</div>
+                    <p class="duration">Full day | Up to 150 attendees</p>
+                    <ul class="event-features">
+                        <li>Premium venue (8+ hours)</li>
+                        <li>Professional AV with technician</li>
+                        <li>Multiple screen setup</li>
+                        <li>VIP welcome reception</li>
+                        <li>Premium catering</li>
+                        <li>Evening cocktail service</li>
+                        <li>Professional photography</li>
+                        <li>VIP parking</li>
+                        <li>Custom branding setup</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <p class="text-muted">*Prices may vary based on specific requirements, menu selection, and additional services</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title font-display">Client Testimonials</h2>
+                <p class="section-subtitle">What our corporate clients say about us</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Hearts & Plates provided exceptional service for our annual conference. The venue was perfect, 
+                        the catering was outstanding, and their team handled every detail flawlessly. Highly recommended!"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Rajesh Kumar</h4>
+                            <p>CEO, TechSolutions Pvt Ltd</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "We've hosted multiple product launches here and each time the experience has been fantastic. 
+                        The professional setup and attention to detail make all the difference."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Priya Sharma</h4>
+                            <p>Marketing Director, InnovateCorp</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "The team building event we organized here was a huge success. The flexible space and excellent 
+                        catering helped create the perfect atmosphere for our team bonding activities."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Michael Thompson</h4>
+                            <p>HR Manager, Global Enterprises</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section class="booking-form-corporate">
+        <div class="container">
+            <div class="form-corporate">
+                <div class="text-center mb-4">
+                    <h2 class="section-title font-display">Plan Your Corporate Event</h2>
+                    <p class="section-subtitle">Tell us about your requirements and we'll create the perfect event experience</p>
+                </div>
+                
+                <!-- Google Form Embed -->
+                <iframe class="google-form-corporate" 
+                        src="https://docs.google.com/forms/d/e/YOUR_CORPORATE_FORM_ID/viewform?embedded=true"
+                        frameborder="0" marginheight="0" marginwidth="0">
+                    Loading...
+                </iframe>
+                
+                <div class="mt-4 p-3" style="background: rgba(212, 175, 55, 0.1); border-radius: 12px; border: 1px solid var(--border);">
+                    <h4 style="color: var(--primary); margin-bottom: 1rem; text-align: center;">
+                        <i class="fas fa-lightbulb"></i> Event Planning Tips
+                    </h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Before the Event:</h5>
+                            <ul style="color: var(--text-secondary); font-size: 0.9rem; margin: 0; padding-left: 1.5rem;">
+                                <li>Book venue 2-4 weeks in advance</li>
+                                <li>Confirm attendee count 1 week prior</li>
+                                <li>Share presentation materials 24 hours before</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 style="color: var(--text-primary); margin-bottom: 0.5rem;">Day of Event:</h5>
+                            <ul style="color: var(--text-secondary); font-size: 0.9rem; margin: 0; padding-left: 1.5rem;">
+                                <li>Arrive 30 minutes early for setup</li>
+                                <li>Test all AV equipment</li>
+                                <li>Brief our team on any special requirements</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta">
+        <div class="container">
+            <h2 class="font-display">Ready to Plan Your Corporate Event?</h2>
+            <p>Let's discuss how we can make your next corporate event exceptional</p>
+            
+            <div class="contact-options">
+                <a href="#" class="contact-btn" id="call-now">
+                    <i class="fas fa-phone"></i> Call Now
+                </a>
+                <a href="#" class="contact-btn" id="whatsapp-corporate">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Inquiry
+                </a>
+                <a href="#" class="contact-btn" id="email-inquiry">
+                    <i class="fas fa-envelope"></i> Email Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="font-display">Hearts & Plates</h3>
+                    <p>Professional event management with culinary excellence for your corporate needs.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Corporate Services</h4>
+                    <ul>
+                        <li><a href="#event-types">Board Meetings</a></li>
+                        <li><a href="#event-types">Conferences</a></li>
+                        <li><a href="#event-types">Product Launches</a></li>
+                        <li><a href="#event-types">Training Programs</a></li>
+                        <li><a href="#event-types">Award Ceremonies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="menu.html">Catering Menu</a></li>
+                        <li><a href="birthday.html">Birthday Events</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 51 B, First Floor<br>Mission Street, Pondicherry</p>
+                    <p><i class="fas fa-envelope"></i> corporate@heartsandplates.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sun: 9:00 AM - 10:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hearts and Plates. All rights reserved. | Corporate Event Excellence</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="../config/site-config.js"></script>
+    <script src="../assets/js/navigation.js"></script>
+    <script>
+        // Corporate page specific functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update page title
+            if (window.SITE_HELPERS) {
+                window.SITE_HELPERS.updatePageTitle('Corporate Events');
+            }
+            
+            // Load Google Form URL from config
+            const googleForm = document.querySelector('.google-form-corporate');
+            if (googleForm && window.SITE_CONFIG) {
+                const formUrl = window.SITE_CONFIG.forms.corporate.url;
+                if (formUrl) {
+                    googleForm.src = formUrl;
+                }
+            }
+            
+            // Contact buttons functionality
+            const whatsappBtn = document.getElementById('whatsapp-corporate');
+            if (whatsappBtn && window.SITE_HELPERS) {
+                whatsappBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const message = "Hello! I'm interested in hosting a corporate event at Hearts & Plates. Could you please provide information about your venues, packages, and availability?";
+                    const whatsappLink = window.SITE_HELPERS.getWhatsAppLink(message);
+                    window.open(whatsappLink, '_blank');
+                });
+            }
+            
+            const emailBtn = document.getElementById('email-inquiry');
+            if (emailBtn) {
+                emailBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const subject = encodeURIComponent('Corporate Event Inquiry - Hearts & Plates');
+                    const body = encodeURIComponent(`Hello,
+
+I am interested in hosting a corporate event at Hearts & Plates. Please provide information about:
+
+- Available venues and capacity
+- Package options and pricing
+- Catering menu options
+- AV equipment and amenities
+- Available dates
+
+Event Details:
+- Type of Event: 
+- Expected Attendees: 
+- Preferred Date: 
+- Duration: 
+
+Thank you for your time. I look forward to hearing from you.
+
+Best regards,`);
+                    
+                    window.location.href = `mailto:corporate@heartsandplates.com?subject=${subject}&body=${body}`;
+                });
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId) || document.querySelector(`.${targetId}`);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

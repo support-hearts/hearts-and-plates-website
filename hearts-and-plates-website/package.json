@@ -1,0 +1,24 @@
+{
+    "name": "hearts-and-plates-website",
+    "version": "1.0.0",
+    "description": "Hearts and Plates Restaurant Website",
+    "main": "index.html",
+    "scripts": {
+      "serve": "python3 -m http.server 8000",
+      "build": "echo 'No build process needed for static site'",
+      "deploy": "echo 'Deploy to GitHub Pages or your hosting provider'"
+    },
+    "keywords": [
+      "restaurant",
+      "website",
+      "pondicherry",
+      "food",
+      "dining"
+    ],
+    "author": "Hearts and Plates Restaurant",
+    "license": "ISC",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/support-hearts/hearts-and-plates-website.git"
+    }
+  }

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu | Hearts & Plates - Fine Dining Experience</title>
+    <meta name="description" content="Explore our exquisite menu featuring authentic South Indian cuisine, Continental dishes, and signature specialties at Hearts & Plates Restaurant.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/icons/favicon.ico">
+    
+    <style>
+        :root {
+            --primary: #D4AF37;
+            --primary-dark: #B8941F;
+            --primary-light: #F4E4A6;
+            --secondary: #8B4513;
+            --background: #0F0F0F;
+            --surface: #1A1A1A;
+            --surface-light: #2A2A2A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --text-muted: #808080;
+            --accent: #FF6B35;
+            --success: #10B981;
+            --border: rgba(212, 175, 55, 0.2);
+            --gradient-primary: linear-gradient(135deg, #D4AF37 0%, #F4E4A6 100%);
+            --gradient-dark: linear-gradient(135deg, #0F0F0F 0%, #2A2A2A 100%);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            --shadow-xl: 0 35px 60px -12px rgba(0, 0, 0, 0.9);
+        }
+
+        .menu-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
+                        url('../assets/images/hero/restaurant-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            margin-top: 80px;
+        }
+        
+        .menu-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.2) 0%, transparent 50%);
+        }
+        
+        .menu-hero-content {
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .menu-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-section {
+            background: var(--surface);
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .search-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .search-input-wrapper i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .search-input-wrapper input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            background: var(--background);
+            border: 2px solid var(--border);
+            border-radius: 25px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input-wrapper input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .search-clear {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .search-clear:hover {
+            background: var(--surface-light);
+            color: var(--text-primary);
+        }
+
+        .glass {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--background);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--background);
+            transform: translateY(-2px);
+        }
+
+        .menu-footer-info {
+            background: var(--surface);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 2rem;
+        }
+
+        .info-card {
+            background: var(--glass);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .info-card i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .info-card p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .menu-cta {
+            background: var(--glass);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .menu-cta h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .menu-cta p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .menu-hero {
+                min-height: 40vh;
+                padding: 0 1rem;
+            }
+
+            .search-container {
+                padding: 0 1rem;
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">Hearts & Plates</a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="menu.html" class="active">Menu</a></li>
+                <li><a href="birthday.html">Birthday Hall</a></li>
+                <li><a href="corporate.html">Corporate Events</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu Hero Section -->
+    <section class="menu-hero">
+        <div class="menu-hero-content">
+            <h1 class="font-display">Our Menu</h1>
+            <p class="hero-subtitle">A culinary journey through authentic flavors</p>
+            <p class="hero-description">
+                Discover our carefully crafted dishes, each prepared with the finest ingredients and 
+                traditional techniques, bringing you the authentic taste of India with a contemporary twist.
+            </p>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <div class="search-input-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" id="menu-search" placeholder="Search for dishes, ingredients, or flavors...">
+                <button class="search-clear" id="search-clear" style="display: none;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Container - This will be populated by JavaScript -->
+    <section class="section">
+        <div class="container">
+            <div id="menu-container">
+                <!-- Loading state -->
+                <div class="text-center" style="padding: 4rem 0;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: var(--primary);"></i>
+                    <p style="margin-top: 1rem; color: var(--text-secondary);">Loading delicious menu...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Footer Info -->
+    <section class="menu-footer-info">
+        <div class="info-cards">
+            <div class="info-card">
+                <i class="fas fa-info-circle"></i>
+                <p id="tax-info">Prices are exclusive of applicable taxes</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-clock"></i>
+                <p>Kitchen open daily: 11:00 AM - 10:30 PM</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-utensils"></i>
+                <p>All dishes are prepared fresh to order</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-leaf"></i>
+                <p>Organic ingredients sourced locally</p>
+            </div>
+        </div>
+        
+        <!-- Call to Action -->
+        <div class="menu-cta">
+            <h3 class="font-display">Ready to Dine?</h3>
+            <p>Experience these amazing flavors at Hearts & Plates</p>
+            <div class="cta-buttons">
+                <a href="../index.html#contact" class="btn btn-primary">
+                    <i class="fas fa-phone"></i> Make Reservation
+                </a>
+                <a href="javascript:void(0)" id="whatsapp-order" class="btn btn-secondary">
+                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                </a>
+                <a href="birthday.html" class="btn btn-secondary">
+                    <i class="fas fa-birthday-cake"></i> Book Event
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="font-display">Hearts & Plates</h3>
+                    <p>Where every meal tells a story and every moment becomes a cherished memory.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Google Reviews"><i class="fab fa-google"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Menu Categories</h4>
+                    <ul>
+                        <li><a href="#" onclick="window.menuPage?.switchToCategory?.('appetizers')">Appetizers</a></li>
+                        <li><a href="#" onclick="window.menuPage?.switchToCategory?.('mainCourse')">Main Course</a></li>
+                        <li><a href="#" onclick="window.menuPage?.switchToCategory?.('southIndian')">South Indian</a></li>
+                        <li><a href="#" onclick="window.menuPage?.switchToCategory?.('seafood')">Seafood</a></li>
+                        <li><a href="#" onclick="window.menuPage?.switchToCategory?.('beveragesDeserts')">Beverages & Desserts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="birthday.html">Birthday Hall</a></li>
+                        <!-- <li><a href="corporate.html">Corporate Events</a></li> -->
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 51 B, First Floor<br>Mission Street, Pondicherry</p>
+                    <p><i class="fas fa-envelope"></i> info@heartsandplates.com</p>
+                    <p><i class="fas fa-clock"></i> Daily: 11:00 AM - 11:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hearts and Plates. All rights reserved. | Crafted with ❤️ for food lovers</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="../config/site-config.js"></script>
+    <script src="../config/menu-data.js"></script>
+    <script src="../assets/js/navigation.js"></script>
+    <script src="../assets/js/menu.js"></script>
+</body>
+</html>
