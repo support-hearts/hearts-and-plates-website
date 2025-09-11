@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
-    <!---test-->
+    
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images/icons/favicon.ico">
     <link rel="apple-touch-icon" href="assets/images/icons/apple-touch-icon.png">
@@ -32,7 +32,6 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="pages/menu.html">Menu</a></li>
                 <li><a href="pages/birthday.html">Birthday Hall</a></li>
-                <!-- <li><a href="pages/corporate.html">Corporate Events</a></li> -->
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="hamburger" id="hamburger">
@@ -95,12 +94,56 @@
                     </p>
                 </div>
                 <div class="about-image">
-                    <img src="assets/images/gallery/restaurant-interior.jpg" 
-                         alt="Hearts and Plates Restaurant Interior"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="image-placeholder">
-                        <i class="fas fa-image"></i>
-                        <p>Restaurant Interior<br><small>Add your image: assets/images/gallery/restaurant-interior.jpg</small></p>
+                    <div class="about-image-gallery" id="imageGallery">
+                        <div class="gallery-container" id="galleryContainer">
+                            <!-- Slide 1 -->
+                            <div class="gallery-slide active">
+                                <img src="assets/images/gallery/restaurant-interior.jpg" 
+                                     alt="Hearts and Plates Restaurant Interior"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="image-placeholder" style="display: flex;">
+                                    <i class="fas fa-utensils"></i>
+                                    <p>Restaurant Interior<br><small>Add your image: assets/images/gallery/restaurant-interior.jpg</small></p>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 2 -->
+                            <div class="gallery-slide">
+                                <img src="assets/images/gallery/dining-area.jpg" 
+                                     alt="Elegant Dining Area"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="image-placeholder" style="display: flex;">
+                                    <i class="fas fa-wine-glass-alt"></i>
+                                    <p>Elegant Dining Area<br><small>Add your image: assets/images/gallery/dining-area.jpg</small></p>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 3 -->
+                            <div class="gallery-slide">
+                                <img src="assets/images/gallery/kitchen.jpg" 
+                                     alt="Professional Kitchen"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="image-placeholder" style="display: flex;">
+                                    <i class="fas fa-fire"></i>
+                                    <p>Professional Kitchen<br><small>Add your image: assets/images/gallery/kitchen.jpg</small></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Navigation Buttons -->
+                        <button class="gallery-nav prev" onclick="changeSlide(-1)">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="gallery-nav next" onclick="changeSlide(1)">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        
+                        <!-- Indicators -->
+                        <div class="gallery-indicators">
+                            <span class="gallery-indicator active" onclick="currentSlide(1)"></span>
+                            <span class="gallery-indicator" onclick="currentSlide(2)"></span>
+                            <span class="gallery-indicator" onclick="currentSlide(3)"></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -155,14 +198,14 @@
                     <p>Make your special day extraordinary with our dedicated birthday hall and customized celebration packages.</p>
                     <a href="pages/birthday.html" class="btn btn-secondary btn-sm">Book Hall</a>
                 </div>
-                <!-- <div class="service-card glass">
+                <div class="service-card glass">
                     <div class="service-icon">
                         <i class="fas fa-handshake"></i>
                     </div>
                     <h3>Corporate Events</h3>
                     <p>Professional event management for corporate meetings, conferences, and team celebrations with full-service support.</p>
                     <a href="pages/corporate.html" class="btn btn-secondary btn-sm">Plan Event</a>
-                </div> -->
+                </div>
             </div>
         </div>
     </section>
@@ -217,7 +260,6 @@
                     <h3 class="font-display">Hearts & Plates</h3>
                     <p>Where every meal tells a story and every moment becomes a cherished memory.</p>
                     <div class="social-links">
-                        <!-- <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a> -->
                         <a href="https://www.instagram.com/hearts_and_plates" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         <a href="https://g.page/r/CZ8rOB4VQ65-EAE/review" aria-label="Google Reviews"><i class="fab fa-google"></i></a>
                         <a href="https://wa.me/917305207180" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -229,7 +271,6 @@
                         <li><a href="#home">Home</a></li>
                         <li><a href="pages/menu.html">Menu</a></li>
                         <li><a href="pages/birthday.html">Birthday Hall</a></li>
-                        <!-- <li><a href="pages/corporate.html">Corporate Events</a></li> -->
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -237,14 +278,13 @@
                     <ul>
                         <li><a href="pages/menu.html">Fine Dining</a></li>
                         <li><a href="pages/birthday.html">Birthday Parties</a></li>
-                        <!-- <li><a href="pages/corporate.html">Corporate Events</a></li> -->
                         <li><a href="#contact">Private Dining</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Contact Info</h4>
                     <p><i class="fas fa-map-marker-alt"></i> 51 B, First Floor<br>Mission Street, Pondicherry</p>
-                                               <!-- Google Map -->
+                    <!-- Google Map -->
                     <div class="map">
                         <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3903.5054663597025!2d79.82707609020169!3d11.939465006481049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a53634e21b369df%3A0x7eae43151e382b9f!2sHearts%20and%20Plates%20Restaurant!5e0!3m2!1sen!2sus!4v1757463437592!5m2!1sen!2sus" 
@@ -265,5 +305,100 @@
     <script src="config/site-config.js"></script>
     <script src="assets/js/navigation.js"></script>
     <script src="assets/js/main.js"></script>
+    
+    <script>
+        // Image Gallery JavaScript
+        let slideIndex = 1;
+        let slideInterval;
+        const totalSlides = 3; // Updated to match actual number of slides
+        
+        // Initialize gallery
+        document.addEventListener('DOMContentLoaded', function() {
+            showSlide(slideIndex);
+            startAutoSlide();
+        });
+        
+        function changeSlide(n) {
+            stopAutoSlide();
+            showSlide(slideIndex += n);
+            startAutoSlide();
+        }
+        
+        function currentSlide(n) {
+            stopAutoSlide();
+            showSlide(slideIndex = n);
+            startAutoSlide();
+        }
+        
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.gallery-slide');
+            const indicators = document.querySelectorAll('.gallery-indicator');
+            
+            if (n > totalSlides) { slideIndex = 1; }
+            if (n < 1) { slideIndex = totalSlides; }
+            
+            // Hide all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            // Show current slide
+            if (slides[slideIndex - 1]) {
+                slides[slideIndex - 1].classList.add('active');
+            }
+            
+            // Update indicators
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+            if (indicators[slideIndex - 1]) {
+                indicators[slideIndex - 1].classList.add('active');
+            }
+        }
+        
+        function startAutoSlide() {
+            slideInterval = setInterval(() => {
+                slideIndex++;
+                if (slideIndex > totalSlides) slideIndex = 1;
+                showSlide(slideIndex);
+            }, 4000); // Change slide every 4 seconds
+        }
+        
+        function stopAutoSlide() {
+            clearInterval(slideInterval);
+        }
+        
+        // Pause auto-slide on hover
+        const gallery = document.getElementById('imageGallery');
+        if (gallery) {
+            gallery.addEventListener('mouseenter', stopAutoSlide);
+            gallery.addEventListener('mouseleave', startAutoSlide);
+        }
+        
+        // Touch/swipe support for mobile
+        let startX = 0;
+        let endX = 0;
+        
+        if (gallery) {
+            gallery.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            });
+            
+            gallery.addEventListener('touchmove', (e) => {
+                endX = e.touches[0].clientX;
+            });
+            
+            gallery.addEventListener('touchend', () => {
+                const threshold = 50;
+                const diff = startX - endX;
+                
+                if (Math.abs(diff) > threshold) {
+                    if (diff > 0) {
+                        // Swipe left - next slide
+                        changeSlide(1);
+                    } else {
+                        // Swipe right - previous slide
+                        changeSlide(-1);
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>
