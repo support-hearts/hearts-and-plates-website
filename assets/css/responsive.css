@@ -1,4 +1,7 @@
-/* Enhanced Responsive Design for Restaurant Theme */
+/* ===========================================
+   BEAUTIFUL AESTHETIC RESPONSIVE DESIGN
+   Mobile-First, Modern & Elegant
+   =========================================== */
 
 /* Large Desktop Styles (1400px+) */
 @media (min-width: 1400px) {
@@ -8,11 +11,11 @@
     }
     
     .hero-content h1 {
-        font-size: 8rem;
+        font-size: 7rem;
     }
     
     .section-title {
-        font-size: 5rem;
+        font-size: 4.5rem;
     }
     
     .services-grid {
@@ -21,6 +24,10 @@
     
     .about-features {
         grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .nav-menu {
+        gap: 3rem;
     }
 }
 
@@ -31,13 +38,13 @@
         padding: 0 2.5rem;
     }
     
-    .nav-menu {
-        gap: 2.5rem;
-    }
-    
     .services-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 2.5rem;
+    }
+    
+    .hero-content h1 {
+        font-size: clamp(4rem, 7vw, 6rem);
     }
 }
 
@@ -51,8 +58,12 @@
         gap: 2rem;
     }
     
+    .hero {
+        height: 80vh;
+    }
+    
     .hero-content h1 {
-        font-size: clamp(3rem, 7vw, 5rem);
+        font-size: clamp(3.5rem, 6vw, 5rem);
     }
     
     .section-title {
@@ -61,7 +72,7 @@
     
     .about-content {
         grid-template-columns: 1fr;
-        gap: 4rem;
+        gap: 3rem;
         text-align: center;
     }
     
@@ -81,11 +92,11 @@
     }
     
     .section {
-        padding: 6rem 0;
+        padding: 5rem 0;
     }
     
     .btn {
-        padding: 1rem 2rem;
+        padding: 0.875rem 1.75rem;
     }
     
     .service-card,
@@ -113,15 +124,15 @@
         left: -100%;
         top: 0;
         flex-direction: column;
-        background: rgba(10, 10, 10, 0.98);
-        width: 350px;
+        background: rgba(250, 251, 255, 0.98);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        width: 320px;
         height: 100vh;
         text-align: left;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: var(--shadow-xl);
-        padding: 6rem 2rem 2rem;
-        backdrop-filter: blur(25px);
-        -webkit-backdrop-filter: blur(25px);
+        padding: 5rem 2rem 2rem;
         border-right: 1px solid var(--border);
         z-index: 999;
     }
@@ -131,28 +142,30 @@
     }
 
     .nav-menu li {
-        margin: 1.5rem 0;
+        margin: 1.25rem 0;
         width: 100%;
     }
     
     .nav-menu a {
         font-size: 1.1rem;
-        padding: 1rem 0;
+        padding: 0.875rem 0;
         display: block;
-        border-bottom: 1px solid var(--border);
+        border-bottom: 1px solid var(--border-light);
+        color: var(--text-primary);
     }
     
     .nav-menu a::before {
         left: 0;
         right: auto;
-        width: 4px;
+        width: 3px;
         top: 0;
         bottom: 0;
-        border-radius: 0 4px 4px 0;
+        border-radius: 0 3px 3px 0;
+        background: var(--gradient-primary);
     }
 
     .hamburger.active span:nth-child(1) {
-        transform: rotate(-45deg) translate(-6px, 7px);
+        transform: rotate(-45deg) translate(-5px, 6px);
     }
 
     .hamburger.active span:nth-child(2) {
@@ -160,7 +173,11 @@
     }
 
     .hamburger.active span:nth-child(3) {
-        transform: rotate(45deg) translate(-6px, -7px);
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    .hero {
+        height: 70vh;
     }
 
     .hero-content h1 {
@@ -170,24 +187,24 @@
 
     .hero-subtitle {
         font-size: 1.2rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     .hero-description {
         font-size: 1rem;
-        margin-bottom: 2.5rem;
+        margin-bottom: 2rem;
     }
 
     .hero-buttons {
-        gap: 1.5rem;
+        gap: 1.25rem;
     }
 
     .section {
-        padding: 5rem 0;
+        padding: 4rem 0;
     }
     
     .section-header {
-        margin-bottom: 4rem;
+        margin-bottom: 3rem;
     }
 
     .section-title {
@@ -200,7 +217,7 @@
 
     .about-content {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 2.5rem;
         text-align: center;
     }
     
@@ -212,26 +229,26 @@
 
     .about-features {
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
+        gap: 1.5rem;
     }
 
     .services-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1.5rem;
     }
 
     .contact-info {
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
+        gap: 1.5rem;
     }
     
     .modal {
         max-width: 90%;
-        padding: 2rem;
+        padding: 1.5rem;
     }
     
     .btn {
-        padding: 1rem 2rem;
+        padding: 0.875rem 1.5rem;
         font-size: 0.95rem;
     }
 }
@@ -245,17 +262,17 @@
 
     .hero-content h1 {
         font-size: clamp(2rem, 6vw, 3rem);
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
     }
 
     .hero-subtitle {
         font-size: 1rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
     }
 
     .hero-description {
         font-size: 0.9rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.25rem;
     }
 
     .hero-buttons {
@@ -264,12 +281,12 @@
     }
     
     .btn {
-        padding: 0.75rem 1.5rem;
+        padding: 0.75rem 1.25rem;
         font-size: 0.9rem;
     }
     
     .section {
-        padding: 3rem 0;
+        padding: 2.5rem 0;
     }
 }
 
@@ -284,15 +301,14 @@
         left: -100%;
         top: 0;
         flex-direction: column;
-        background: rgba(248, 246, 240, 0.98) !important;
+        background: rgba(250, 251, 255, 0.98);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
         width: 100%;
         height: 100vh;
         text-align: center;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: none;
-        padding: 6rem 2rem 2rem;
-        backdrop-filter: blur(25px);
-        -webkit-backdrop-filter: blur(25px);
+        padding: 5rem 2rem 2rem;
         z-index: 999;
         overflow-y: auto;
     }
@@ -302,20 +318,21 @@
     }
 
     .nav-menu li {
-        margin: 2rem 0;
+        margin: 1.5rem 0;
         width: 100%;
     }
     
     .nav-menu a {
-        color: var(--text-primary) !important;
         font-size: 1.2rem;
-        padding: 1.5rem 0;
+        padding: 1rem 0;
         display: block;
-        border-bottom: 1px solid var(--border);
+        border-bottom: 1px solid var(--border-light);
+        border-radius: 8px;
+        color: var(--text-primary);
     }
 
     .hamburger.active span:nth-child(1) {
-        transform: rotate(-45deg) translate(-6px, 7px);
+        transform: rotate(-45deg) translate(-5px, 6px);
     }
 
     .hamburger.active span:nth-child(2) {
@@ -323,13 +340,13 @@
     }
 
     .hamburger.active span:nth-child(3) {
-        transform: rotate(45deg) translate(-6px, -7px);
+        transform: rotate(45deg) translate(-5px, -6px);
     }
 
     .hero {
-        height: 100vh;
+        height: 80vh;
         padding: 0 1rem;
-        background-attachment: scroll;
+        margin-top: 70px;
     }
 
     .hero-content {
@@ -344,14 +361,14 @@
 
     .hero-subtitle {
         font-size: 1rem;
-        margin-bottom: 1.5rem;
-        letter-spacing: 0.05em;
+        margin-bottom: 1.25rem;
+        letter-spacing: 0.01em;
     }
 
     .hero-description {
         font-size: 0.95rem;
-        margin-bottom: 2rem;
-        line-height: 1.5;
+        margin-bottom: 1.75rem;
+        line-height: 1.6;
     }
 
     .hero-buttons {
@@ -363,18 +380,18 @@
 
     .btn {
         width: 100%;
-        max-width: 300px;
+        max-width: 280px;
         justify-content: center;
-        padding: 1rem 2rem;
+        padding: 1rem 1.5rem;
         font-size: 0.95rem;
     }
 
     .section {
-        padding: 4rem 0;
+        padding: 3rem 0;
     }
 
     .section-header {
-        margin-bottom: 3rem;
+        margin-bottom: 2.5rem;
     }
 
     .section-title {
@@ -389,13 +406,13 @@
 
     .about-content {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 2rem;
         text-align: center;
     }
     
     .about-image {
         order: -1;
-        border-radius: 16px;
+        border-radius: 12px;
     }
 
     .about-text h3 {
@@ -409,32 +426,33 @@
 
     .about-features {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
-        margin-top: 2.5rem;
+        gap: 1.25rem;
+        margin-top: 2rem;
     }
 
     .feature-card {
         padding: 1.5rem;
+        border-radius: 12px;
     }
 
     .feature-icon {
-        font-size: 2.5rem;
+        font-size: 2rem;
         margin-bottom: 1rem;
     }
 
     .services-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1.25rem;
     }
 
     .service-card {
-        padding: 2rem;
+        padding: 1.75rem;
         border-radius: 16px;
     }
 
     .service-icon {
-        font-size: 3rem;
-        margin-bottom: 1.5rem;
+        font-size: 2.5rem;
+        margin-bottom: 1.25rem;
     }
 
     .service-card h3 {
@@ -444,24 +462,25 @@
 
     .contact-info {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1.25rem;
     }
 
     .contact-item {
         flex-direction: column;
         text-align: center;
-        gap: 1rem;
-        padding: 2rem;
+        gap: 0.75rem;
+        padding: 1.75rem;
+        border-radius: 12px;
     }
 
     .contact-icon {
-        font-size: 2rem;
+        font-size: 1.75rem;
         margin-top: 0;
     }
 
     .footer-content {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1.5rem;
         text-align: center;
     }
 
@@ -471,15 +490,16 @@
 
     /* Form adjustments for mobile */
     .form-container {
-        padding: 1.5rem;
+        padding: 1.25rem;
         margin: 0 1rem;
     }
 
     .form-input,
     .form-select,
     .form-textarea {
-        padding: 0.875rem 1rem;
+        padding: 0.875rem;
         font-size: 16px; /* Prevents zoom on iOS */
+        border-radius: 8px;
     }
 
     .form-label {
@@ -488,24 +508,24 @@
 
     /* Modal adjustments for mobile */
     .modal {
-        padding: 1.5rem;
+        padding: 1.25rem;
         margin: 1rem;
-        max-height: 90vh;
-        border-radius: 16px;
+        max-height: 85vh;
+        border-radius: 12px;
     }
 
     .modal-header {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.25rem;
         padding-bottom: 1rem;
     }
 
     .modal-title {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
 
     .modal-footer {
         flex-direction: column;
-        gap: 1rem;
+        gap: 0.75rem;
     }
 
     .modal-footer .btn {
@@ -514,17 +534,17 @@
 
     /* Card adjustments for mobile */
     .card {
-        padding: 1.5rem;
-        border-radius: 16px;
+        padding: 1.25rem;
+        border-radius: 12px;
     }
 
     .card-title {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 
     /* Alert adjustments for mobile */
     .alert {
-        padding: 1rem;
+        padding: 0.875rem 1rem;
         border-radius: 8px;
         flex-direction: column;
         text-align: center;
@@ -537,8 +557,8 @@
 
     /* Badge adjustments for mobile */
     .badge {
-        font-size: 0.75rem;
-        padding: 0.25rem 0.75rem;
+        font-size: 0.7rem;
+        padding: 0.25rem 0.625rem;
     }
 
     /* Dropdown adjustments for mobile */
@@ -550,7 +570,7 @@
         bottom: 1rem;
         width: auto;
         min-width: auto;
-        max-height: 60vh;
+        max-height: 50vh;
         overflow-y: auto;
     }
 
@@ -565,11 +585,68 @@
         font-size: 0.9rem;
         border-radius: 8px;
         border-bottom: none;
+        background: var(--surface-light);
     }
 
     .tab-link.active {
         background: var(--primary);
-        color: var(--background);
+        color: white;
+    }
+
+    /* Accordion mobile optimizations */
+    .accordion-header {
+        padding: 1rem 1.25rem;
+        font-size: 0.95rem;
+    }
+
+    .accordion-body {
+        padding: 1.25rem;
+        font-size: 0.9rem;
+    }
+
+    /* Breadcrumb mobile adjustments */
+    .breadcrumb {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+
+    .breadcrumb-item {
+        white-space: nowrap;
+    }
+
+    /* Input group mobile adjustments */
+    .input-group {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .input-group .form-input {
+        border-radius: 8px;
+        border-right: 2px solid var(--border);
+    }
+
+    .input-group-text {
+        border-radius: 8px;
+        justify-content: center;
+    }
+
+    /* Switch mobile adjustments */
+    .switch {
+        width: 42px;
+        height: 22px;
+    }
+
+    .switch-slider:before {
+        height: 16px;
+        width: 16px;
+        left: 3px;
+        bottom: 3px;
+    }
+
+    .switch input:checked + .switch-slider:before {
+        transform: translateX(20px);
     }
 }
 
@@ -588,8 +665,12 @@
     }
 
     .hamburger span {
-        width: 24px;
+        width: 22px;
         height: 2px;
+    }
+
+    .hero {
+        height: 75vh;
     }
 
     .hero-content h1 {
@@ -599,11 +680,11 @@
 
     .hero-subtitle {
         font-size: 0.9rem;
-        letter-spacing: 0.03em;
+        letter-spacing: 0.01em;
     }
 
     .hero-description {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 
     .section-title {
@@ -615,20 +696,20 @@
     }
 
     .btn {
-        padding: 0.875rem 1.5rem;
-        font-size: 0.9rem;
-        max-width: 280px;
+        padding: 0.75rem 1.25rem;
+        font-size: 0.85rem;
+        max-width: 260px;
     }
 
     .btn-sm {
-        padding: 0.75rem 1.25rem;
-        font-size: 0.85rem;
+        padding: 0.625rem 1rem;
+        font-size: 0.8rem;
     }
 
     .service-card,
     .feature-card,
     .contact-item {
-        padding: 1.5rem;
+        padding: 1.25rem;
     }
 
     .service-icon,
@@ -637,22 +718,22 @@
     }
 
     .about-text h3 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 
     .about-text {
-        font-size: 0.95rem;
-        line-height: 1.6;
+        font-size: 0.9rem;
+        line-height: 1.5;
     }
 
     .modal {
         padding: 1rem;
         margin: 0.5rem;
-        border-radius: 12px;
+        border-radius: 10px;
     }
 
     .modal-title {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .form-container {
@@ -663,12 +744,12 @@
     .form-select,
     .form-textarea {
         padding: 0.75rem;
-        border-radius: 8px;
+        border-radius: 6px;
     }
 
     .card {
         padding: 1rem;
-        border-radius: 12px;
+        border-radius: 10px;
     }
 
     .contact-details h4 {
@@ -676,7 +757,7 @@
     }
 
     .contact-details p {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 
     .footer-section h3,
@@ -685,23 +766,29 @@
     }
 
     .footer-section p {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+    }
+
+    .social-links a {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
     }
 }
 
 /* Ultra Small Mobile (max-width: 320px) */
 @media (max-width: 320px) {
     .hero-content h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
     
     .section-title {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
     
     .btn {
-        padding: 0.75rem 1.25rem;
-        font-size: 0.85rem;
+        padding: 0.625rem 1rem;
+        font-size: 0.8rem;
     }
     
     .service-card,
@@ -709,13 +796,16 @@
     .contact-item {
         padding: 1rem;
     }
+    
+    .modal {
+        margin: 0.25rem;
+    }
 }
 
 /* High DPI / Retina Displays */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .hero {
-        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), 
-                          url('../images/hero/restaurant-hero@2x.jpg');
+        background-image: var(--gradient-background);
     }
 }
 
@@ -726,7 +816,9 @@
     .btn,
     .hamburger,
     .modal-overlay,
-    .floating-element {
+    .floating-element,
+    .switch,
+    .dropdown {
         display: none !important;
     }
 
@@ -742,16 +834,19 @@
         height: auto !important;
         padding: 2rem 0 !important;
         page-break-after: avoid;
+        margin-top: 0 !important;
     }
 
     .hero-content h1 {
         color: black !important;
+        background: none !important;
         -webkit-text-fill-color: black !important;
         font-size: 2rem !important;
     }
 
     .section-title {
         color: black !important;
+        background: none !important;
         -webkit-text-fill-color: black !important;
         font-size: 1.5rem !important;
         page-break-after: avoid;
@@ -764,10 +859,12 @@
 
     .glass,
     .glass-light,
-    .glass-gold {
+    .glass-colored {
         background: white !important;
         border: 1px solid #ccc !important;
         box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
     }
 
     .card,
@@ -775,29 +872,55 @@
     .feature-card {
         page-break-inside: avoid;
         margin-bottom: 1rem;
+        background: white !important;
+        border: 1px solid #ddd !important;
     }
 
     .container {
         max-width: none !important;
         padding: 0 !important;
     }
+
+    .nav-menu,
+    .footer-section,
+    .social-links {
+        display: none !important;
+    }
+
+    .logo {
+        color: black !important;
+        background: none !important;
+        -webkit-text-fill-color: black !important;
+    }
+
+    .text-primary {
+        color: black !important;
+    }
+
+    .badge,
+    .alert {
+        background: #f5f5f5 !important;
+        color: black !important;
+        border: 1px solid #ddd !important;
+    }
 }
 
 /* High Contrast Mode */
 @media (prefers-contrast: high) {
     :root {
-        --background: #000000;
-        --surface: #1a1a1a;
-        --text-primary: #ffffff;
-        --text-secondary: #cccccc;
-        --border: rgba(255, 255, 255, 0.4);
-        --primary: #FFD700;
+        --background: #FFFFFF;
+        --surface: #FFFFFF;
+        --text-primary: #000000;
+        --text-secondary: #333333;
+        --border: rgba(0, 0, 0, 0.3);
+        --primary: #0066CC;
+        --secondary: #CC0066;
     }
 
     .glass,
     .glass-light,
-    .glass-gold {
-        background: rgba(26, 26, 26, 0.98) !important;
+    .glass-colored {
+        background: rgba(255, 255, 255, 0.98) !important;
         border: 2px solid var(--primary) !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
@@ -805,13 +928,19 @@
 
     .btn-primary {
         background: var(--primary) !important;
-        color: #000000 !important;
+        color: white !important;
         border: 2px solid var(--primary) !important;
     }
 
     .btn-secondary {
         border: 2px solid var(--primary) !important;
         color: var(--primary) !important;
+        background: white !important;
+    }
+
+    .alert,
+    .badge {
+        border: 2px solid currentColor !important;
     }
 }
 
@@ -838,7 +967,8 @@
     .btn:hover,
     .card:hover,
     .service-card:hover,
-    .feature-card:hover {
+    .feature-card:hover,
+    .contact-item:hover {
         transform: none !important;
     }
 
@@ -853,15 +983,33 @@
     .modal-overlay.active .modal {
         transform: none !important;
     }
+
+    .floating-element {
+        animation: none !important;
+    }
+
+    .spinner,
+    .spinner-gradient {
+        animation: none !important;
+        border-top-color: var(--primary) !important;
+    }
+
+    .progress-bar::after {
+        animation: none !important;
+    }
+
+    .progress-striped .progress-bar {
+        animation: none !important;
+    }
 }
 
 /* Dark mode preference detection */
-@media (prefers-color-scheme: light) {
-    /* Users who prefer light mode - keep dark theme but reduce intensity */
+@media (prefers-color-scheme: dark) {
+    /* Override for users who prefer dark mode but we're using light theme */
     :root {
-        --background: #0F0F0F;
-        --surface: #1A1A1A;
-        --surface-light: #252525;
+        --background: #FAFBFF;
+        --surface: #FFFFFF;
+        --surface-light: #F1F5F9;
     }
 }
 
@@ -872,14 +1020,16 @@
     .card:hover,
     .service-card:hover,
     .feature-card:hover,
-    .contact-item:hover {
-        transform: none;
+    .contact-item:hover,
+    .nav-menu a:hover,
+    .social-links a:hover {
+        transform: none !important;
     }
     
     /* Make touch targets larger */
     .btn {
         min-height: 44px;
-        padding: 1rem 2rem;
+        padding: 1rem 1.5rem;
     }
     
     .nav-menu a {
@@ -892,12 +1042,37 @@
         min-height: 44px;
         padding: 0.75rem;
     }
+
+    .social-links a {
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    .dropdown-toggle,
+    .accordion-header,
+    .tab-link {
+        min-height: 44px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+        min-height: 44px;
+    }
+
+    /* Remove hover states for better touch experience */
+    .btn:hover::before,
+    .card:hover::before,
+    .feature-card:hover::before {
+        left: -100% !important;
+    }
 }
 
 /* Landscape orientation on phones */
 @media (max-width: 896px) and (orientation: landscape) and (max-height: 500px) {
     .hero {
         height: 100vh;
+        margin-top: 60px;
     }
     
     .hero-content {
@@ -915,7 +1090,7 @@
     }
     
     .hero-description {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         margin-bottom: 1rem;
     }
     
@@ -926,6 +1101,145 @@
     
     .btn {
         padding: 0.5rem 1rem;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+    }
+
+    .section {
+        padding: 2rem 0;
+    }
+
+    .navbar {
+        padding: 0.5rem 0;
+    }
+
+    .nav-container {
+        padding: 0 1rem;
+    }
+}
+
+/* Ultra-wide screens (3440px+) */
+@media (min-width: 3440px) {
+    .container {
+        max-width: 2400px;
+    }
+    
+    .hero-content {
+        max-width: 1200px;
+    }
+    
+    .section-header {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Short screens (max-height: 600px) */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        height: 100vh;
+        padding: 1rem;
+    }
+    
+    .hero-content {
+        max-width: 100%;
+    }
+    
+    .section {
+        padding: 2rem 0;
+    }
+    
+    .modal {
+        max-height: 90vh;
+        padding: 1rem;
+    }
+}
+
+/* Very tall screens (min-height: 1200px) */
+@media (min-height: 1200px) {
+    .hero {
+        height: 70vh;
+        max-height: 800px;
+    }
+    
+    .section {
+        padding: 8rem 0;
+    }
+}
+
+/* Specific device breakpoints */
+
+/* iPhone SE and similar small devices */
+@media (max-width: 375px) and (max-height: 667px) {
+    .hero {
+        height: 70vh;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .btn {
+        max-width: 240px;
+    }
+}
+
+/* iPad and tablet-specific adjustments */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .hero {
+        height: 75vh;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    
+    .about-features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .contact-info {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Large tablet landscape */
+@media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+    .about-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        text-align: left;
+    }
+    
+    .about-image {
+        order: 0;
+    }
+}
+
+/* Foldable devices and unusual aspect ratios */
+@media (max-aspect-ratio: 1/1) {
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Wide aspect ratio devices */
+@media (min-aspect-ratio: 2/1) {
+    .hero-content {
+        max-width: 60%;
+    }
+    
+    .section-header {
+        max-width: 50%;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
