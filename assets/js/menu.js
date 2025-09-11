@@ -1,7 +1,7 @@
-// Fixed Menu Page JavaScript - Works with existing menu-data.js
+// Updated Menu Page JavaScript with Neon Styling and Multi-Filter Tabs
 class MenuPage {
     constructor() {
-        this.currentFilter = 'all';
+        this.currentFilters = new Set(['all']); // Support multiple filters
         this.currentCategory = 'appetizers';
         this.searchTerm = '';
         this.menuContainer = null;
@@ -40,246 +40,405 @@ class MenuPage {
         const style = document.createElement('style');
         style.id = 'menu-styles';
         style.textContent = `
-            /* Essential Menu Styles */
-            .filter-controls {
-                display: flex;
-                gap: 1rem;
-                justify-content: center;
-                flex-wrap: wrap;
-                margin-bottom: 2rem;
-                padding: 1rem;
-                background: rgba(26, 26, 26, 0.8);
-                border-radius: 12px;
-                border: 1px solid var(--border);
-            }
-            
-            .filter-btn {
-                padding: 0.5rem 1rem;
-                background: transparent;
-                color: var(--text-secondary);
-                border: 1px solid var(--border);
-                border-radius: 20px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                font-size: 0.9rem;
-                font-family: inherit;
-            }
-            
-            .filter-btn.active,
-            .filter-btn:hover {
-                background: var(--primary);
-                color: var(--background);
-                border-color: var(--primary);
-            }
-            
+            /* Beautiful Aesthetic Menu Styles - Following main.css theme */
+
+            /* Category Tabs with Multi-Filter Support */
             .category-tabs {
                 display: flex;
                 overflow-x: auto;
-                gap: 0.5rem;
+                gap: 0.75rem;
                 margin-bottom: 2rem;
-                padding: 0.5rem;
-                background: rgba(26, 26, 26, 0.6);
-                border-radius: 12px;
+                padding: 1.5rem;
+                background: var(--glass);
+                border-radius: 20px;
                 border: 1px solid var(--border);
+                position: relative;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                box-shadow: var(--shadow-lg);
             }
-            
+
+            .category-tabs::-webkit-scrollbar {
+                display: none;
+            }
+
+            .category-tabs::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(145deg, rgba(99, 102, 241, 0.02) 0%, rgba(236, 72, 153, 0.01) 100%);
+                border-radius: inherit;
+                pointer-events: none;
+            }
+
             .category-tab {
                 flex-shrink: 0;
                 padding: 1rem 1.5rem;
-                background: transparent;
-                color: var(--text-secondary);
-                border: none;
-                border-radius: 8px;
+                background: var(--surface);
+                color: var(--text-primary);
+                border: 2px solid var(--border);
+                border-radius: 12px;
                 cursor: pointer;
-                transition: all 0.3s ease;
-                font-weight: 500;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                font-weight: 600;
                 white-space: nowrap;
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
                 font-family: inherit;
+                letter-spacing: 0.01em;
+                position: relative;
+                overflow: hidden;
+                box-shadow: var(--shadow-sm);
             }
-            
+
+            .category-tab::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+                transition: left 0.6s ease;
+            }
+
+            .category-tab:hover::before {
+                left: 100%;
+            }
+
+            .category-tab:hover {
+                color: var(--primary);
+                border-color: rgba(99, 102, 241, 0.3);
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-colored);
+            }
+
             .category-tab.active {
-                background: var(--primary);
-                color: var(--background);
+                background: var(--gradient-primary);
+                color: white;
+                border-color: var(--primary);
+                box-shadow: var(--shadow-colored);
+                transform: translateY(-2px);
             }
-            
-            .category-tab:hover:not(.active) {
+
+            .category-tab i {
+                font-size: 1.1rem;
+                transition: all 0.3s ease;
+            }
+
+            .category-tab:hover i,
+            .category-tab.active i {
+                transform: scale(1.1);
+            }
+
+            /* Multi-Filter Pills in Category Tabs */
+            .filter-pills {
+                display: flex;
+                gap: 0.5rem;
+                margin-left: 1.5rem;
+                padding-left: 1.5rem;
+                border-left: 2px solid var(--border);
+                flex-wrap: wrap;
+            }
+
+            .filter-pill {
+                padding: 0.5rem 1rem;
                 background: var(--surface-light);
-                color: var(--text-primary);
+                color: var(--text-secondary);
+                border: 1px solid var(--border);
+                border-radius: 25px;
+                cursor: pointer;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                font-size: 0.8rem;
+                font-weight: 500;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                position: relative;
+                overflow: hidden;
             }
-            
+
+            .filter-pill::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--gradient-primary);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                border-radius: inherit;
+            }
+
+            .filter-pill:hover::before {
+                opacity: 1;
+            }
+
+            .filter-pill:hover {
+                color: white;
+                border-color: var(--primary);
+                transform: translateY(-1px);
+                box-shadow: var(--shadow-colored);
+            }
+
+            .filter-pill.active {
+                background: var(--primary);
+                color: white;
+                border-color: var(--primary);
+                box-shadow: var(--shadow-colored);
+            }
+
+            .filter-pill span {
+                position: relative;
+                z-index: 1;
+            }
+
+            /* Menu Content */
             .menu-content {
                 position: relative;
                 min-height: 400px;
             }
-            
+
             .category-content {
                 display: none;
-                animation: fadeIn 0.3s ease-in-out;
+                animation: fadeInUp 0.6s ease-out;
             }
-            
+
             .category-content.active {
                 display: block;
             }
-            
-            @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(20px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-            
-            .category-summary {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 1.5rem;
-                padding: 1rem;
-                background: rgba(26, 26, 26, 0.6);
-                border-radius: 8px;
-                border: 1px solid var(--border);
-            }
-            
-            .category-title {
-                font-size: 1.5rem;
-                color: var(--primary);
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                margin: 0;
-            }
-            
-            .category-description {
-                color: var(--text-muted);
-                font-size: 0.9rem;
-                margin: 0.25rem 0 0 0;
-            }
-            
+
+            /* Menu Items Grid */
             .menu-grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
                 gap: 1.5rem;
+                margin-top: 2rem;
             }
-            
+
+            /* Individual Menu Item Cards */
             .menu-item {
-                background: rgba(26, 26, 26, 0.8);
-                backdrop-filter: blur(20px);
+                background: var(--glass);
                 border: 1px solid var(--border);
-                border-radius: 12px;
+                border-radius: 16px;
                 padding: 1.5rem;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                position: relative;
+                overflow: hidden;
+                box-shadow: var(--shadow-sm);
             }
-            
+
+            .menu-item::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(145deg, rgba(99, 102, 241, 0.02) 0%, rgba(236, 72, 153, 0.01) 100%);
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                border-radius: inherit;
+            }
+
+            .menu-item:hover::before {
+                opacity: 1;
+            }
+
             .menu-item:hover {
-                transform: translateY(-5px);
-                border-color: var(--primary);
-                box-shadow: var(--shadow-lg);
+                transform: translateY(-5px) scale(1.01);
+                border-color: rgba(99, 102, 241, 0.2);
+                box-shadow: var(--shadow-colored);
             }
-            
+
             .item-header {
                 display: flex;
                 justify-content: space-between;
                 align-items: flex-start;
-                margin-bottom: 0.75rem;
+                margin-bottom: 1rem;
             }
-            
+
             .item-name {
-                font-size: 1.2rem;
-                font-weight: 600;
+                font-size: 1.3rem;
+                font-weight: 700;
                 color: var(--text-primary);
                 margin: 0;
                 flex: 1;
+                font-family: 'Playfair Display', serif;
+                letter-spacing: -0.01em;
             }
-            
+
             .item-price {
-                font-size: 1.1rem;
-                font-weight: 600;
+                font-size: 1.2rem;
+                font-weight: 700;
                 color: var(--primary);
                 margin-left: 1rem;
+                white-space: nowrap;
             }
-            
+
             .item-description {
                 color: var(--text-secondary);
-                font-size: 0.9rem;
+                font-size: 0.95rem;
                 margin-bottom: 1rem;
-                line-height: 1.5;
+                line-height: 1.6;
             }
-            
+
             .item-badges {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 0.5rem;
                 margin-bottom: 1rem;
             }
-            
+
             .badge {
-                padding: 0.25rem 0.5rem;
+                padding: 0.25rem 0.75rem;
                 font-size: 0.75rem;
-                border-radius: 12px;
-                font-weight: 500;
+                border-radius: 20px;
+                font-weight: 600;
                 display: flex;
                 align-items: center;
                 gap: 0.25rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                border: 1px solid transparent;
+                transition: all 0.3s ease;
             }
-            
+
+            .badge:hover {
+                transform: translateY(-1px);
+                box-shadow: var(--shadow-sm);
+            }
+
+            /* Search Results */
             .search-results {
-                margin-bottom: 1rem;
-                padding: 0.5rem 1rem;
-                background: rgba(26, 26, 26, 0.6);
-                border-radius: 8px;
+                margin-bottom: 1.5rem;
+                padding: 1rem 1.5rem;
+                background: var(--glass);
+                border-radius: 12px;
+                border: 1px solid var(--border);
                 color: var(--text-secondary);
-                font-size: 0.9rem;
+                font-size: 0.95rem;
                 text-align: center;
                 display: none;
+                box-shadow: var(--shadow-md);
             }
-            
+
             .no-results {
                 text-align: center;
-                padding: 3rem 2rem;
+                padding: 4rem 2rem;
                 color: var(--text-secondary);
                 display: none;
             }
-            
+
             .no-results i {
-                font-size: 3rem;
-                margin-bottom: 1rem;
-                color: var(--text-muted);
+                font-size: 4rem;
+                margin-bottom: 1.5rem;
+                color: var(--primary);
+                animation: float 4s ease-in-out infinite;
             }
-            
+
             .no-results h3 {
-                margin-bottom: 0.5rem;
+                margin-bottom: 1rem;
                 color: var(--text-primary);
+                font-size: 1.5rem;
+                font-family: 'Playfair Display', serif;
             }
-            
+
+            .no-results p {
+                margin-bottom: 2rem;
+                font-size: 1.1rem;
+            }
+
+            .no-results .btn {
+                background: var(--gradient-primary);
+                color: white;
+                border: none;
+                padding: 1rem 2rem;
+                border-radius: 12px;
+                font-weight: 600;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: var(--shadow-colored);
+            }
+
+            .no-results .btn:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-colored-lg);
+                filter: brightness(1.05);
+            }
+
+            /* Responsive Design */
             @media (max-width: 768px) {
                 .category-tabs {
-                    scrollbar-width: none;
-                    -ms-overflow-style: none;
-                }
-                
-                .category-tabs::-webkit-scrollbar {
-                    display: none;
-                }
-                
-                .menu-grid {
-                    grid-template-columns: 1fr;
-                }
-                
-                .category-summary {
                     flex-direction: column;
                     gap: 1rem;
-                    text-align: center;
+                    padding: 1rem;
                 }
-                
-                .filter-controls {
+
+                .filter-pills {
+                    margin-left: 0;
+                    padding-left: 0;
+                    border-left: none;
+                    border-top: 1px solid var(--border);
+                    padding-top: 1rem;
+                    justify-content: center;
+                }
+
+                .menu-grid {
+                    grid-template-columns: 1fr;
+                    gap: 1rem;
+                }
+
+                .menu-item {
+                    padding: 1.25rem;
+                }
+
+                .item-header {
+                    flex-direction: column;
                     gap: 0.5rem;
                 }
-                
-                .filter-btn {
-                    padding: 0.4rem 0.8rem;
-                    font-size: 0.8rem;
+
+                .item-price {
+                    margin-left: 0;
+                    align-self: flex-end;
                 }
+
+                .category-tab {
+                    justify-content: center;
+                    padding: 0.8rem 1.2rem;
+                }
+
+                .filter-pill {
+                    padding: 0.4rem 0.8rem;
+                    font-size: 0.75rem;
+                }
+            }
+
+            /* Loading Animation */
+            .menu-loading {
+                text-align: center;
+                padding: 4rem 0;
+            }
+
+            .menu-loading i {
+                font-size: 3rem;
+                color: var(--primary);
+                animation: spin 1s linear infinite;
+            }
+
+            .menu-loading p {
+                margin-top: 1rem;
+                color: var(--text-secondary);
+                font-size: 1.2rem;
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
             }
         `;
         document.head.appendChild(style);
@@ -289,18 +448,18 @@ class MenuPage {
         if (!this.menuContainer) return;
         
         this.menuContainer.innerHTML = `
-            <!-- Filter Controls -->
-            <div class="filter-controls">
-                <button class="filter-btn active" data-filter="all">All Items</button>
-                <button class="filter-btn" data-filter="veg">Vegetarian</button>
-                <button class="filter-btn" data-filter="non-veg">Non-Vegetarian</button>
-                <button class="filter-btn" data-filter="seafood">Seafood</button>
-                <button class="filter-btn" data-filter="popular">Popular</button>
-                <button class="filter-btn" data-filter="spicy">Spicy</button>
+            <!-- Category Tabs with Multi-Filter -->
+            <div class="category-tabs" id="category-tabs">
+                <!-- Category tabs will be generated here -->
+                <div class="filter-pills" id="filter-pills">
+                    <button class="filter-pill active" data-filter="all">All</button>
+                    <button class="filter-pill" data-filter="veg">Veg</button>
+                    <button class="filter-pill" data-filter="non-veg">Non-Veg</button>
+                    <button class="filter-pill" data-filter="seafood">Seafood</button>
+                    <button class="filter-pill" data-filter="popular">Popular</button>
+                    <button class="filter-pill" data-filter="spicy">Spicy</button>
+                </div>
             </div>
-            
-            <!-- Category Tabs -->
-            <div class="category-tabs" id="category-tabs"></div>
             
             <!-- Search Results Info -->
             <div class="search-results" id="search-results"></div>
@@ -329,17 +488,24 @@ class MenuPage {
 
         const categories = [
             { key: 'appetizers', title: 'Appetizers', icon: 'fas fa-leaf' },
+            { key: 'soups', title: 'Soups', icon: 'fas fa-bowl-hot' },
             { key: 'mainCourse', title: 'Main Course', icon: 'fas fa-bowl-rice' },
-            { key: 'southIndian', title: 'South Indian', icon: 'fas fa-bread-slice' },
-            { key: 'seafood', title: 'Seafood', icon: 'fas fa-fish' },
-            { key: 'beveragesDeserts', title: 'Beverages & Desserts', icon: 'fas fa-ice-cream' }
+            { key: 'riceAndBiryani', title: 'Rice & Biryani', icon: 'fas fa-bowl-rice' },
+            { key: 'chineseRiceNoodles', title: 'Chinese Rice & Noodles', icon: 'fas fa-bowl-food' },
+            { key: 'tandooriKebabs', title: 'Tandoori & Kebabs', icon: 'fas fa-fire' },
+            { key: 'breadsAndSouthIndian', title: 'Breads & South Indian', icon: 'fas fa-bread-slice' },
+            { key: 'beveragesAndAddons', title: 'Beverages & Add-ons', icon: 'fas fa-glass-water' },
+            { key: 'internationalAndDesserts', title: 'International & Desserts', icon: 'fas fa-ice-cream' }
         ];
 
-        tabsContainer.innerHTML = categories.map((cat, index) => `
+        // Generate category tabs only
+        const categoryTabsHTML = categories.map((cat, index) => `
             <button class="category-tab ${index === 0 ? 'active' : ''}" data-category="${cat.key}">
                 <i class="${cat.icon}"></i> ${cat.title}
             </button>
         `).join('');
+
+        tabsContainer.innerHTML = categoryTabsHTML;
     }
 
     createMenuContent() {
@@ -354,15 +520,6 @@ class MenuPage {
 
             contentHTML += `
                 <div class="category-content ${isActive}" data-category="${categoryKey}">
-                    <div class="category-summary">
-                        <div>
-                            <h2 class="category-title">
-                                <i class="${category.icon}"></i> ${category.title}
-                            </h2>
-                            <p class="category-description">${category.items.length} items • ${category.description}</p>
-                        </div>
-                    </div>
-                    
                     <div class="menu-grid" id="${categoryKey}-grid">
                         ${this.generateCategoryItems(category.items, categoryKey)}
                     </div>
@@ -386,7 +543,7 @@ class MenuPage {
         return items.map(item => {
             const badges = this.getDietaryBadges(item);
             const badgesHTML = badges.map(badge => 
-                `<span class="badge" style="background: ${badge.color}20; color: ${badge.color};" data-badge="${badge.label.toLowerCase()}">
+                `<span class="badge" style="background: ${badge.color}20; color: ${badge.color}; border-color: ${badge.color};" data-badge="${badge.label.toLowerCase()}">
                     ${badge.icon} ${badge.label}
                 </span>`
             ).join('');
@@ -402,7 +559,7 @@ class MenuPage {
                     <div class="item-content">
                         <div class="item-header">
                             <h3 class="item-name">${item.name}</h3>
-                            <span class="item-price">₹${item.price}</span>
+                            <span class="item-price">${this.formatPrice(item.price)}</span>
                         </div>
                         <p class="item-description">${item.description}</p>
                         <div class="item-badges">${badgesHTML}</div>
@@ -423,7 +580,7 @@ class MenuPage {
         if (item.isPopular) tags.push('popular');
         
         // Add seafood tag based on category or item name
-        if (categoryKey === 'seafood' || 
+        if (categoryKey === 'tandooriKebabs' || 
             item.name.toLowerCase().includes('fish') ||
             item.name.toLowerCase().includes('prawn') ||
             item.name.toLowerCase().includes('crab') ||
@@ -440,10 +597,10 @@ class MenuPage {
         
         // Use MENU_CONFIG if available, otherwise use fallback
         const dietaryInfo = window.MENU_CONFIG?.dietaryInfo || {
-            veg: { icon: "🥬", label: "Vegetarian", color: "#10B981" },
-            nonVeg: { icon: "🍖", label: "Non-Vegetarian", color: "#EF4444" },
-            spicy: { icon: "🌶️", label: "Spicy", color: "#F59E0B" },
-            popular: { icon: "⭐", label: "Popular", color: "#D4AF37" }
+            veg: { icon: "🥬", label: "Vegetarian", color: "#00ff00" },
+            nonVeg: { icon: "🍖", label: "Non-Vegetarian", color: "#ff0040" },
+            spicy: { icon: "🌶️", label: "Spicy", color: "#ff8000" },
+            popular: { icon: "⭐", label: "Popular", color: "#ffff00" }
         };
         
         if (item.isVeg) {
@@ -461,6 +618,11 @@ class MenuPage {
         }
         
         return badges;
+    }
+
+    formatPrice(price) {
+        if (price === 0) return "Market Price";
+        return `₹${price}`;
     }
 
     setupEventListeners() {
@@ -502,14 +664,44 @@ class MenuPage {
 
     setupFilters() {
         document.addEventListener('click', (e) => {
-            if (e.target.matches('.filter-btn')) {
+            if (e.target.matches('.filter-pill')) {
                 console.log('Filter clicked:', e.target.getAttribute('data-filter'));
                 
-                // Update active filter
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
+                const filterValue = e.target.getAttribute('data-filter');
                 
-                this.currentFilter = e.target.getAttribute('data-filter');
+                // Handle multi-select filters
+                if (filterValue === 'all') {
+                    // If "All" is clicked, clear other filters
+                    this.currentFilters.clear();
+                    this.currentFilters.add('all');
+                    
+                    // Update UI
+                    document.querySelectorAll('.filter-pill').forEach(btn => {
+                        btn.classList.toggle('active', btn.getAttribute('data-filter') === 'all');
+                    });
+                } else {
+                    // Remove "all" if specific filter is selected
+                    this.currentFilters.delete('all');
+                    
+                    // Toggle the clicked filter
+                    if (this.currentFilters.has(filterValue)) {
+                        this.currentFilters.delete(filterValue);
+                    } else {
+                        this.currentFilters.add(filterValue);
+                    }
+                    
+                    // If no filters selected, default to "all"
+                    if (this.currentFilters.size === 0) {
+                        this.currentFilters.add('all');
+                    }
+                    
+                    // Update UI
+                    document.querySelectorAll('.filter-pill').forEach(btn => {
+                        const btnFilter = btn.getAttribute('data-filter');
+                        btn.classList.toggle('active', this.currentFilters.has(btnFilter));
+                    });
+                }
+                
                 this.applyCurrentFilter();
             }
         });
@@ -568,7 +760,7 @@ class MenuPage {
         
         let visibleCount = 0;
         
-        console.log(`Applying filter: ${this.currentFilter}, search: "${this.searchTerm}"`);
+        console.log(`Applying filters: ${Array.from(this.currentFilters).join(', ')}, search: "${this.searchTerm}"`);
         console.log(`Found ${items.length} items in category`);
         
         items.forEach(item => {
@@ -587,9 +779,16 @@ class MenuPage {
                 }
             }
             
-            // Apply category filter
-            if (this.currentFilter !== 'all') {
-                if (!tags.includes(this.currentFilter)) {
+            // Apply category filters (multi-select)
+            if (!this.currentFilters.has('all')) {
+                let matchesFilter = false;
+                for (const filter of this.currentFilters) {
+                    if (tags.includes(filter)) {
+                        matchesFilter = true;
+                        break;
+                    }
+                }
+                if (!matchesFilter) {
                     show = false;
                 }
             }
@@ -606,14 +805,15 @@ class MenuPage {
         
         // Update search results info
         if (searchResults) {
-            if (this.currentFilter !== 'all' || this.searchTerm) {
+            if (!this.currentFilters.has('all') || this.searchTerm) {
                 searchResults.style.display = 'block';
                 let message = `Showing ${visibleCount} items`;
-                if (this.currentFilter !== 'all') {
-                    message += ` • ${this.currentFilter.replace('-', ' ')}`;
+                if (!this.currentFilters.has('all')) {
+                    const activeFilters = Array.from(this.currentFilters).join(', ');
+                    message += ` • Filters: ${activeFilters}`;
                 }
                 if (this.searchTerm) {
-                    message += ` • "${this.searchTerm}"`;
+                    message += ` • Search: "${this.searchTerm}"`;
                 }
                 searchResults.textContent = message;
             } else {
@@ -623,7 +823,7 @@ class MenuPage {
         
         // Show/hide no results message
         if (noResults) {
-            if (visibleCount === 0 && (this.currentFilter !== 'all' || this.searchTerm)) {
+            if (visibleCount === 0 && (!this.currentFilters.has('all') || this.searchTerm)) {
                 noResults.style.display = 'block';
             } else {
                 noResults.style.display = 'none';
@@ -633,10 +833,11 @@ class MenuPage {
 
     clearAllFilters() {
         this.clearSearch();
-        this.currentFilter = 'all';
+        this.currentFilters.clear();
+        this.currentFilters.add('all');
         
         // Reset filter buttons
-        document.querySelectorAll('.filter-btn').forEach(btn => {
+        document.querySelectorAll('.filter-pill').forEach(btn => {
             btn.classList.toggle('active', btn.getAttribute('data-filter') === 'all');
         });
         
@@ -663,10 +864,20 @@ class MenuPage {
         if (this.menuContainer) {
             this.menuContainer.innerHTML = `
                 <div style="text-align: center; padding: 4rem 2rem;">
-                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
-                    <h3>Unable to Load Menu</h3>
-                    <p>Menu data is not available. Please check if menu-data.js is loaded properly.</p>
-                    <button class="btn btn-primary" onclick="window.location.reload()">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--neon-accent); margin-bottom: 1rem; filter: drop-shadow(0 0 10px currentColor);"></i>
+                    <h3 style="color: #ffffff; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);">Unable to Load Menu</h3>
+                    <p style="color: #cccccc;">Menu data is not available. Please check if menu-data.js is loaded properly.</p>
+                    <button class="btn btn-primary" onclick="window.location.reload()" style="
+                        background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
+                        color: var(--dark-bg);
+                        border: none;
+                        padding: 1rem 2rem;
+                        border-radius: 25px;
+                        font-weight: 600;
+                        margin-top: 1rem;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                    ">
                         Refresh Page
                     </button>
                 </div>
