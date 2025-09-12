@@ -1,7 +1,7 @@
-// Updated Menu Page JavaScript with Neon Styling and Multi-Filter Tabs
+// Updated Menu Page JavaScript - FIXED VERSION
 class MenuPage {
     constructor() {
-        this.currentFilters = new Set(['all']); // Support multiple filters
+        this.currentFilters = new Set(['all']);
         this.currentCategory = 'appetizers';
         this.searchTerm = '';
         this.menuContainer = null;
@@ -15,7 +15,6 @@ class MenuPage {
             return;
         }
 
-        // Wait for menu data to load
         this.waitForMenuData(() => {
             this.addRequiredStyles();
             this.createMenuStructure();
@@ -28,41 +27,112 @@ class MenuPage {
         if (window.MENU_DATA) {
             callback();
         } else {
-            // Wait for menu data to load
             setTimeout(() => this.waitForMenuData(callback), 100);
         }
     }
 
     addRequiredStyles() {
-        // Check if styles already added
         if (document.getElementById('menu-styles')) return;
 
         const style = document.createElement('style');
         style.id = 'menu-styles';
         style.textContent = `
-            /* Beautiful Aesthetic Menu Styles - Following main.css theme */
+            /* FIXED: Category Tabs - No scrolling, wrap instead */
+            .category-tabs-wrapper {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
 
-            /* Category Tabs with Multi-Filter Support */
             .category-tabs {
                 display: flex;
-                overflow-x: auto;
-                gap: 0.75rem;
-                margin-bottom: 2rem;
-                padding: 1.5rem;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                padding: 1rem;
                 background: var(--glass);
-                border-radius: 20px;
+                border-radius: 12px;
                 border: 1px solid var(--border);
+                box-shadow: var(--shadow-sm);
+                width: 100%;
+                justify-content: center;
+                align-items: flex-start;
+                /* REMOVED: overflow-x, scrollbar styles */
+            }
+
+            .category-tab {
+                flex: 0 0 auto;
+                padding: 0.6rem 1rem;
+                background: var(--surface);
+                color: var(--text-secondary);
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-weight: 500;
+                font-size: 0.85rem;
+                white-space: nowrap;
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+                font-family: inherit;
                 position: relative;
-                scrollbar-width: none;
-                -ms-overflow-style: none;
-                box-shadow: var(--shadow-lg);
+                overflow: visible;
+                width: auto;
+                min-width: auto;
+                margin-bottom: 0.5rem;
             }
 
-            .category-tabs::-webkit-scrollbar {
-                display: none;
+            .category-tab::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+                transition: left 0.5s ease;
             }
 
-            .category-tabs::before {
+            .category-tab:hover::before {
+                left: 100%;
+            }
+
+            .category-tab:hover {
+                color: var(--primary);
+                border-color: var(--primary);
+                transform: translateY(-1px);
+                box-shadow: var(--shadow-md);
+            }
+
+            .category-tab.active {
+                background: var(--primary);
+                color: white;
+                border-color: var(--primary);
+                box-shadow: var(--shadow-colored);
+            }
+
+            .category-tab i {
+                font-size: 0.9rem;
+            }
+
+            /* Filter Pills */
+            .filter-pills-container {
+                margin-bottom: 2rem;
+            }
+
+            .filter-pills {
+                display: flex;
+                gap: 0.5rem;
+                padding: 1rem;
+                background: var(--surface-light);
+                border-radius: 25px;
+                border: 1px solid var(--border-light);
+                justify-content: center;
+                flex-wrap: wrap;
+                box-shadow: var(--shadow-sm);
+                position: relative;
+            }
+
+            .filter-pills::before {
                 content: '';
                 position: absolute;
                 top: 0;
@@ -74,91 +144,22 @@ class MenuPage {
                 pointer-events: none;
             }
 
-            .category-tab {
-                flex-shrink: 0;
-                padding: 1rem 1.5rem;
-                background: var(--surface);
-                color: var(--text-primary);
-                border: 2px solid var(--border);
-                border-radius: 12px;
-                cursor: pointer;
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                font-weight: 600;
-                white-space: nowrap;
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                font-family: inherit;
-                letter-spacing: 0.01em;
-                position: relative;
-                overflow: hidden;
-                box-shadow: var(--shadow-sm);
-            }
-
-            .category-tab::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
-                transition: left 0.6s ease;
-            }
-
-            .category-tab:hover::before {
-                left: 100%;
-            }
-
-            .category-tab:hover {
-                color: var(--primary);
-                border-color: rgba(99, 102, 241, 0.3);
-                transform: translateY(-2px);
-                box-shadow: var(--shadow-colored);
-            }
-
-            .category-tab.active {
-                background: var(--gradient-primary);
-                color: white;
-                border-color: var(--primary);
-                box-shadow: var(--shadow-colored);
-                transform: translateY(-2px);
-            }
-
-            .category-tab i {
-                font-size: 1.1rem;
-                transition: all 0.3s ease;
-            }
-
-            .category-tab:hover i,
-            .category-tab.active i {
-                transform: scale(1.1);
-            }
-
-            /* Multi-Filter Pills in Category Tabs */
-            .filter-pills {
-                display: flex;
-                gap: 0.5rem;
-                margin-left: 1.5rem;
-                padding-left: 1.5rem;
-                border-left: 2px solid var(--border);
-                flex-wrap: wrap;
-            }
-
             .filter-pill {
                 padding: 0.5rem 1rem;
-                background: var(--surface-light);
+                background: var(--surface);
                 color: var(--text-secondary);
                 border: 1px solid var(--border);
-                border-radius: 25px;
+                border-radius: 20px;
                 cursor: pointer;
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: all 0.3s ease;
                 font-size: 0.8rem;
                 font-weight: 500;
                 text-transform: uppercase;
                 letter-spacing: 0.05em;
                 position: relative;
                 overflow: hidden;
+                box-shadow: var(--shadow-sm);
+                z-index: 1;
             }
 
             .filter-pill::before {
@@ -371,21 +372,36 @@ class MenuPage {
                 filter: brightness(1.05);
             }
 
-            /* Responsive Design */
+            /* Responsive Design - IMPROVED */
             @media (max-width: 768px) {
                 .category-tabs {
-                    flex-direction: column;
-                    gap: 1rem;
                     padding: 1rem;
+                    gap: 0.5rem;
+                }
+
+                .category-tab {
+                    padding: 0.6rem 1rem;
+                    font-size: 0.8rem;
+                    margin-bottom: 0.5rem;
+                    min-height: 40px;
+                }
+
+                .category-tab i {
+                    font-size: 0.8rem;
+                }
+
+                .category-tab span {
+                    display: none; /* Hide text on mobile, show only icons */
                 }
 
                 .filter-pills {
-                    margin-left: 0;
-                    padding-left: 0;
-                    border-left: none;
-                    border-top: 1px solid var(--border);
-                    padding-top: 1rem;
-                    justify-content: center;
+                    padding: 0.75rem;
+                    gap: 0.4rem;
+                }
+
+                .filter-pill {
+                    padding: 0.4rem 0.8rem;
+                    font-size: 0.75rem;
                 }
 
                 .menu-grid {
@@ -406,39 +422,25 @@ class MenuPage {
                     margin-left: 0;
                     align-self: flex-end;
                 }
+            }
+
+            @media (max-width: 480px) {
+                .category-tabs {
+                    padding: 0.75rem;
+                    gap: 0.4rem;
+                }
 
                 .category-tab {
-                    justify-content: center;
-                    padding: 0.8rem 1.2rem;
-                }
-
-                .filter-pill {
-                    padding: 0.4rem 0.8rem;
+                    padding: 0.5rem 0.75rem;
                     font-size: 0.75rem;
+                    min-width: 50px;
+                    justify-content: center;
                 }
             }
 
-            /* Loading Animation */
-            .menu-loading {
-                text-align: center;
-                padding: 4rem 0;
-            }
-
-            .menu-loading i {
-                font-size: 3rem;
-                color: var(--primary);
-                animation: spin 1s linear infinite;
-            }
-
-            .menu-loading p {
-                margin-top: 1rem;
-                color: var(--text-secondary);
-                font-size: 1.2rem;
-            }
-
-            @keyframes spin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
             }
         `;
         document.head.appendChild(style);
@@ -448,29 +450,27 @@ class MenuPage {
         if (!this.menuContainer) return;
         
         this.menuContainer.innerHTML = `
-            <!-- Category Tabs with Multi-Filter -->
-            <div class="category-tabs" id="category-tabs">
-                <!-- Category tabs will be generated here -->
+            <div class="category-tabs-wrapper">
+                <div class="category-tabs" id="category-tabs"></div>
+            </div>
+            
+            <div class="filter-pills-container">
                 <div class="filter-pills" id="filter-pills">
-                    <button class="filter-pill active" data-filter="all">All</button>
-                    <button class="filter-pill" data-filter="veg">Veg</button>
-                    <button class="filter-pill" data-filter="non-veg">Non-Veg</button>
-                    <button class="filter-pill" data-filter="seafood">Seafood</button>
-                    <button class="filter-pill" data-filter="popular">Popular</button>
-                    <button class="filter-pill" data-filter="spicy">Spicy</button>
+                    <button class="filter-pill active" data-filter="all"><span>All Items</span></button>
+                    <button class="filter-pill" data-filter="veg"><span>Vegetarian</span></button>
+                    <button class="filter-pill" data-filter="non-veg"><span>Non-Vegetarian</span></button>
+                    <button class="filter-pill" data-filter="seafood"><span>Seafood</span></button>
+                    <button class="filter-pill" data-filter="popular"><span>Popular</span></button>
+                    <button class="filter-pill" data-filter="spicy"><span>Spicy</span></button>
                 </div>
             </div>
             
-            <!-- Search Results Info -->
             <div class="search-results" id="search-results"></div>
-            
-            <!-- Menu Content -->
             <div class="menu-content" id="menu-content"></div>
         `;
     }
 
     loadMenu() {
-        // Check if menu data is available
         if (!window.MENU_DATA) {
             console.error('Menu data not loaded!');
             this.showErrorMessage();
@@ -484,7 +484,10 @@ class MenuPage {
 
     createCategoryTabs() {
         const tabsContainer = document.getElementById('category-tabs');
-        if (!tabsContainer) return;
+        if (!tabsContainer) {
+            console.error('Category tabs container not found!');
+            return;
+        }
 
         const categories = [
             { key: 'appetizers', title: 'Appetizers', icon: 'fas fa-leaf' },
@@ -498,14 +501,14 @@ class MenuPage {
             { key: 'internationalAndDesserts', title: 'International & Desserts', icon: 'fas fa-ice-cream' }
         ];
 
-        // Generate category tabs only
         const categoryTabsHTML = categories.map((cat, index) => `
             <button class="category-tab ${index === 0 ? 'active' : ''}" data-category="${cat.key}">
-                <i class="${cat.icon}"></i> ${cat.title}
+                <i class="${cat.icon}"></i> <span>${cat.title}</span>
             </button>
         `).join('');
 
         tabsContainer.innerHTML = categoryTabsHTML;
+        console.log('Category tabs created - no scroll functionality');
     }
 
     createMenuContent() {
@@ -569,51 +572,61 @@ class MenuPage {
         }).join('');
     }
 
+    // FIXED: Correct tag generation
     getItemTags(item, categoryKey) {
         const tags = [];
         
-        // Add dietary tags
-        if (item.isVeg) tags.push('veg');
-        else tags.push('non-veg');
+        // Add dietary tags based on data structure from menu-data.js
+        if (item.isVeg === true) {
+            tags.push('veg');
+        } else {
+            tags.push('non-veg');
+        }
         
-        if (item.isSpicy) tags.push('spicy');
-        if (item.isPopular) tags.push('popular');
+        if (item.isSpicy === true) {
+            tags.push('spicy');
+        }
         
-        // Add seafood tag based on category or item name
-        if (categoryKey === 'tandooriKebabs' || 
-            item.name.toLowerCase().includes('fish') ||
-            item.name.toLowerCase().includes('prawn') ||
-            item.name.toLowerCase().includes('crab') ||
-            item.name.toLowerCase().includes('squid') ||
-            item.name.toLowerCase().includes('pomfret')) {
+        if (item.isPopular === true) {
+            tags.push('popular');
+        }
+        
+        // Add seafood tag based on item name
+        const itemNameLower = item.name.toLowerCase();
+        if (itemNameLower.includes('fish') ||
+            itemNameLower.includes('prawn') ||
+            itemNameLower.includes('crab') ||
+            itemNameLower.includes('squid') ||
+            itemNameLower.includes('pomfret')) {
             tags.push('seafood');
         }
         
-        return tags.join(' ');
+        const result = tags.join(' ');
+        console.log(`Item "${item.name}" -> Tags: "${result}"`);
+        return result;
     }
 
     getDietaryBadges(item) {
         const badges = [];
         
-        // Use MENU_CONFIG if available, otherwise use fallback
         const dietaryInfo = window.MENU_CONFIG?.dietaryInfo || {
-            veg: { icon: "🥬", label: "Vegetarian", color: "#00ff00" },
-            nonVeg: { icon: "🍖", label: "Non-Vegetarian", color: "#ff0040" },
-            spicy: { icon: "🌶️", label: "Spicy", color: "#ff8000" },
-            popular: { icon: "⭐", label: "Popular", color: "#ffff00" }
+            veg: { icon: "🥬", label: "Vegetarian", color: "#10B981" },
+            nonVeg: { icon: "🥩", label: "Non-Vegetarian", color: "#EF4444" },
+            spicy: { icon: "🌶️", label: "Spicy", color: "#F59E0B" },
+            popular: { icon: "⭐", label: "Popular", color: "#D4AF37" }
         };
         
-        if (item.isVeg) {
+        if (item.isVeg === true) {
             badges.push(dietaryInfo.veg);
         } else {
             badges.push(dietaryInfo.nonVeg);
         }
         
-        if (item.isSpicy) {
+        if (item.isSpicy === true) {
             badges.push(dietaryInfo.spicy);
         }
         
-        if (item.isPopular) {
+        if (item.isPopular === true) {
             badges.push(dietaryInfo.popular);
         }
         
@@ -632,78 +645,79 @@ class MenuPage {
         this.setupWhatsAppOrder();
     }
 
+    // FIXED: Proper category tab handling
     setupCategoryTabs() {
         document.addEventListener('click', (e) => {
-            if (e.target.matches('.category-tab') || e.target.closest('.category-tab')) {
-                const tab = e.target.matches('.category-tab') ? e.target : e.target.closest('.category-tab');
-                const category = tab.getAttribute('data-category');
-                
-                if (!category) return;
-                
-                console.log('Switching to category:', category);
-                
-                // Update active tab
-                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                
-                // Update active content
-                document.querySelectorAll('.category-content').forEach(c => c.classList.remove('active'));
-                const targetContent = document.querySelector(`.category-content[data-category="${category}"]`);
-                if (targetContent) {
-                    targetContent.classList.add('active');
-                    console.log('Category content shown for:', category);
-                } else {
-                    console.error('Category content not found for:', category);
-                }
-                
-                this.currentCategory = category;
-                this.applyCurrentFilter();
+            // Check if clicked element is a category tab or inside one
+            const tab = e.target.closest('.category-tab');
+            if (!tab) return;
+            
+            const category = tab.getAttribute('data-category');
+            if (!category) return;
+            
+            console.log('Category clicked:', category);
+            
+            // Update active tab
+            document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            // Update active content
+            document.querySelectorAll('.category-content').forEach(c => c.classList.remove('active'));
+            const targetContent = document.querySelector(`.category-content[data-category="${category}"]`);
+            if (targetContent) {
+                targetContent.classList.add('active');
+                console.log('Switched to category:', category);
             }
+            
+            this.currentCategory = category;
+            
+            // Clear global search results
+            const globalNoResults = document.querySelector('.global-no-results');
+            if (globalNoResults) {
+                globalNoResults.style.display = 'none';
+            }
+            
+            // Apply current filters
+            setTimeout(() => this.applyCurrentFilter(), 100);
         });
     }
 
+    // FIXED: Proper filter handling
     setupFilters() {
         document.addEventListener('click', (e) => {
-            if (e.target.matches('.filter-pill')) {
-                console.log('Filter clicked:', e.target.getAttribute('data-filter'));
+            const filterPill = e.target.closest('.filter-pill');
+            if (!filterPill) return;
+            
+            const filterValue = filterPill.getAttribute('data-filter');
+            console.log('Filter clicked:', filterValue);
+            
+            if (filterValue === 'all') {
+                this.currentFilters.clear();
+                this.currentFilters.add('all');
                 
-                const filterValue = e.target.getAttribute('data-filter');
+                document.querySelectorAll('.filter-pill').forEach(btn => {
+                    btn.classList.toggle('active', btn.getAttribute('data-filter') === 'all');
+                });
+            } else {
+                this.currentFilters.delete('all');
                 
-                // Handle multi-select filters
-                if (filterValue === 'all') {
-                    // If "All" is clicked, clear other filters
-                    this.currentFilters.clear();
-                    this.currentFilters.add('all');
-                    
-                    // Update UI
-                    document.querySelectorAll('.filter-pill').forEach(btn => {
-                        btn.classList.toggle('active', btn.getAttribute('data-filter') === 'all');
-                    });
+                if (this.currentFilters.has(filterValue)) {
+                    this.currentFilters.delete(filterValue);
                 } else {
-                    // Remove "all" if specific filter is selected
-                    this.currentFilters.delete('all');
-                    
-                    // Toggle the clicked filter
-                    if (this.currentFilters.has(filterValue)) {
-                        this.currentFilters.delete(filterValue);
-                    } else {
-                        this.currentFilters.add(filterValue);
-                    }
-                    
-                    // If no filters selected, default to "all"
-                    if (this.currentFilters.size === 0) {
-                        this.currentFilters.add('all');
-                    }
-                    
-                    // Update UI
-                    document.querySelectorAll('.filter-pill').forEach(btn => {
-                        const btnFilter = btn.getAttribute('data-filter');
-                        btn.classList.toggle('active', this.currentFilters.has(btnFilter));
-                    });
+                    this.currentFilters.add(filterValue);
                 }
                 
-                this.applyCurrentFilter();
+                if (this.currentFilters.size === 0) {
+                    this.currentFilters.add('all');
+                }
+                
+                document.querySelectorAll('.filter-pill').forEach(btn => {
+                    const btnFilter = btn.getAttribute('data-filter');
+                    btn.classList.toggle('active', this.currentFilters.has(btnFilter));
+                });
             }
+            
+            this.applyCurrentFilter();
         });
     }
 
@@ -747,7 +761,13 @@ class MenuPage {
         }
     }
 
+    // FIXED: Filter application logic
     applyCurrentFilter() {
+        if (this.searchTerm) {
+            this.applyGlobalSearch();
+            return;
+        }
+
         const activeContent = document.querySelector('.category-content.active');
         if (!activeContent) {
             console.error('No active category content found');
@@ -760,62 +780,48 @@ class MenuPage {
         
         let visibleCount = 0;
         
-        console.log(`Applying filters: ${Array.from(this.currentFilters).join(', ')}, search: "${this.searchTerm}"`);
-        console.log(`Found ${items.length} items in category`);
+        console.log(`Applying filters: ${Array.from(this.currentFilters).join(', ')}`);
+        console.log(`Processing ${items.length} items`);
         
         items.forEach(item => {
-            const itemName = item.getAttribute('data-name') || '';
-            const itemDesc = item.getAttribute('data-description') || '';
-            const tags = item.getAttribute('data-tags') || '';
+            const rawTags = item.getAttribute('data-tags') || '';
+            const tags = rawTags.trim().split(/\s+/).filter(tag => tag.length > 0);
+            const itemName = item.querySelector('.item-name')?.textContent || 'Unknown';
             
             let show = true;
             
-            // Apply search filter
-            if (this.searchTerm) {
-                const matchesName = itemName.includes(this.searchTerm);
-                const matchesDesc = itemDesc.includes(this.searchTerm);
-                if (!matchesName && !matchesDesc) {
-                    show = false;
-                }
-            }
-            
-            // Apply category filters (multi-select)
             if (!this.currentFilters.has('all')) {
                 let matchesFilter = false;
                 for (const filter of this.currentFilters) {
                     if (tags.includes(filter)) {
                         matchesFilter = true;
+                        console.log(`✓ "${itemName}" matches filter "${filter}"`);
                         break;
                     }
                 }
                 if (!matchesFilter) {
                     show = false;
+                    console.log(`✗ "${itemName}" doesn't match filters. Tags: [${tags.join(', ')}], Filters: [${Array.from(this.currentFilters).join(', ')}]`);
                 }
             }
             
+            // FIXED: Force display change
             if (show) {
-                item.style.display = 'block';
+                item.style.setProperty('display', 'block', 'important');
                 visibleCount++;
             } else {
-                item.style.display = 'none';
+                item.style.setProperty('display', 'none', 'important');
             }
         });
         
-        console.log(`Visible items: ${visibleCount}`);
+        console.log(`Result: ${visibleCount} items visible`);
         
         // Update search results info
         if (searchResults) {
-            if (!this.currentFilters.has('all') || this.searchTerm) {
+            if (!this.currentFilters.has('all')) {
                 searchResults.style.display = 'block';
-                let message = `Showing ${visibleCount} items`;
-                if (!this.currentFilters.has('all')) {
-                    const activeFilters = Array.from(this.currentFilters).join(', ');
-                    message += ` • Filters: ${activeFilters}`;
-                }
-                if (this.searchTerm) {
-                    message += ` • Search: "${this.searchTerm}"`;
-                }
-                searchResults.textContent = message;
+                const activeFilters = Array.from(this.currentFilters).join(', ');
+                searchResults.textContent = `Showing ${visibleCount} items • Filters: ${activeFilters}`;
             } else {
                 searchResults.style.display = 'none';
             }
@@ -823,7 +829,7 @@ class MenuPage {
         
         // Show/hide no results message
         if (noResults) {
-            if (visibleCount === 0 && (!this.currentFilters.has('all') || this.searchTerm)) {
+            if (visibleCount === 0 && !this.currentFilters.has('all')) {
                 noResults.style.display = 'block';
             } else {
                 noResults.style.display = 'none';
@@ -831,12 +837,136 @@ class MenuPage {
         }
     }
 
+    applyGlobalSearch() {
+        const searchResults = document.getElementById('search-results');
+        let totalVisibleCount = 0;
+        let matchingCategories = [];
+
+        document.querySelectorAll('.category-content').forEach(content => {
+            content.classList.remove('active');
+        });
+
+        Object.keys(window.MENU_DATA).forEach(categoryKey => {
+            const content = document.querySelector(`.category-content[data-category="${categoryKey}"]`);
+            if (!content) return;
+
+            const items = content.querySelectorAll('.menu-item');
+            let categoryVisibleCount = 0;
+
+            items.forEach(item => {
+                const itemName = item.getAttribute('data-name') || '';
+                const itemDesc = item.getAttribute('data-description') || '';
+                const tags = (item.getAttribute('data-tags') || '').split(' ');
+
+                let show = false;
+
+                if (this.searchTerm) {
+                    if (itemName.includes(this.searchTerm) || itemDesc.includes(this.searchTerm)) {
+                        show = true;
+                    }
+                }
+
+                if (show && !this.currentFilters.has('all')) {
+                    let matchesFilter = false;
+                    for (const filter of this.currentFilters) {
+                        if (tags.includes(filter)) {
+                            matchesFilter = true;
+                            break;
+                        }
+                    }
+                    if (!matchesFilter) {
+                        show = false;
+                    }
+                }
+
+                if (show) {
+                    item.style.setProperty('display', 'block', 'important');
+                    categoryVisibleCount++;
+                    totalVisibleCount++;
+                } else {
+                    item.style.setProperty('display', 'none', 'important');
+                }
+            });
+
+            if (categoryVisibleCount > 0) {
+                matchingCategories.push({
+                    key: categoryKey,
+                    count: categoryVisibleCount,
+                    title: window.MENU_DATA[categoryKey].title
+                });
+                content.classList.add('active');
+            }
+        });
+
+        if (searchResults) {
+            if (this.searchTerm) {
+                searchResults.style.display = 'block';
+                let message = `Found ${totalVisibleCount} items matching "${this.searchTerm}"`;
+                
+                if (!this.currentFilters.has('all')) {
+                    const activeFilters = Array.from(this.currentFilters).join(', ');
+                    message += ` • Filters: ${activeFilters}`;
+                }
+                
+                if (matchingCategories.length > 1) {
+                    message += ` across ${matchingCategories.length} categories`;
+                }
+                
+                searchResults.innerHTML = `
+                    <div>${message}</div>
+                    ${matchingCategories.length > 1 ? 
+                        `<div style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">
+                            ${matchingCategories.map(cat => `${cat.title} (${cat.count})`).join(' • ')}
+                        </div>` 
+                        : ''
+                    }
+                `;
+            } else {
+                searchResults.style.display = 'none';
+            }
+        }
+
+        if (totalVisibleCount === 0 && this.searchTerm) {
+            if (!document.querySelector('.global-no-results')) {
+                const noResultsHTML = `
+                    <div class="global-no-results no-results" style="display: block;">
+                        <i class="fas fa-search"></i>
+                        <h3>No items found</h3>
+                        <p>No menu items match your search "${this.searchTerm}"</p>
+                        <button class="btn btn-primary" onclick="window.menuPage.clearSearch()">
+                            Clear Search
+                        </button>
+                    </div>
+                `;
+                document.getElementById('menu-content').insertAdjacentHTML('afterbegin', noResultsHTML);
+            } else {
+                const globalNoResults = document.querySelector('.global-no-results');
+                globalNoResults.style.display = 'block';
+                globalNoResults.querySelector('p').textContent = `No menu items match your search "${this.searchTerm}"`;
+            }
+        } else {
+            const globalNoResults = document.querySelector('.global-no-results');
+            if (globalNoResults) {
+                globalNoResults.style.display = 'none';
+            }
+        }
+
+        if (!this.searchTerm) {
+            document.querySelectorAll('.category-content').forEach(c => c.classList.remove('active'));
+            const currentContent = document.querySelector(`.category-content[data-category="${this.currentCategory}"]`);
+            if (currentContent) {
+                currentContent.classList.add('active');
+            }
+        }
+
+        console.log(`Global search results: ${totalVisibleCount} items across ${matchingCategories.length} categories`);
+    }
+
     clearAllFilters() {
         this.clearSearch();
         this.currentFilters.clear();
         this.currentFilters.add('all');
         
-        // Reset filter buttons
         document.querySelectorAll('.filter-pill').forEach(btn => {
             btn.classList.toggle('active', btn.getAttribute('data-filter') === 'all');
         });
@@ -857,6 +987,11 @@ class MenuPage {
             clearBtn.style.display = 'none';
         }
         
+        const globalNoResults = document.querySelector('.global-no-results');
+        if (globalNoResults) {
+            globalNoResults.style.display = 'none';
+        }
+        
         this.applyCurrentFilter();
     }
 
@@ -864,15 +999,15 @@ class MenuPage {
         if (this.menuContainer) {
             this.menuContainer.innerHTML = `
                 <div style="text-align: center; padding: 4rem 2rem;">
-                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--neon-accent); margin-bottom: 1rem; filter: drop-shadow(0 0 10px currentColor);"></i>
-                    <h3 style="color: #ffffff; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);">Unable to Load Menu</h3>
-                    <p style="color: #cccccc;">Menu data is not available. Please check if menu-data.js is loaded properly.</p>
+                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                    <h3 style="color: var(--text-primary);">Unable to Load Menu</h3>
+                    <p style="color: var(--text-secondary);">Menu data is not available. Please check if menu-data.js is loaded properly.</p>
                     <button class="btn btn-primary" onclick="window.location.reload()" style="
-                        background: linear-gradient(135deg, var(--neon-primary), var(--neon-secondary));
-                        color: var(--dark-bg);
+                        background: var(--gradient-primary);
+                        color: white;
                         border: none;
                         padding: 1rem 2rem;
-                        border-radius: 25px;
+                        border-radius: 12px;
                         font-weight: 600;
                         margin-top: 1rem;
                         cursor: pointer;
@@ -885,7 +1020,6 @@ class MenuPage {
         }
     }
 
-    // Public method to switch categories (for footer links)
     switchToCategory(categoryKey) {
         const tab = document.querySelector(`[data-category="${categoryKey}"]`);
         if (tab) {
@@ -894,16 +1028,13 @@ class MenuPage {
     }
 }
 
-// Function for footer links
 function switchToCategory(categoryKey) {
     if (window.menuPage) {
         window.menuPage.switchToCategory(categoryKey);
     }
 }
 
-// Initialize menu when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Add navigation toggle functionality
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
     
@@ -913,7 +1044,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Initialize menu page
     window.menuPage = new MenuPage();
     console.log('✅ Menu page initialized successfully!');
 });

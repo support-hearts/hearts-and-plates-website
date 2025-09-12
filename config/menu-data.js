@@ -1,29 +1,11 @@
 // Hearts and Plates Restaurant Menu - Complete Data from Images
 const MENU_DATA = {
     appetizers: {
-        title: "Appetizers",
+        title: "Starters",
         icon: "fas fa-leaf",
         description: "Start your culinary journey with our handcrafted appetizers",
         items: [
             // Vegetarian Starters
-            {
-                name: "Samosa Delight",
-                price: 120,
-                description: "Crispy pastry filled with spiced potatoes and peas (2 pieces)",
-                image: "assets/images/menu/appetizers/samosa.jpg",
-                isVeg: true,
-                isSpicy: true,
-                isPopular: false
-            },
-            {
-                name: "Medu Vada",
-                price: 150,
-                description: "Traditional South Indian lentil donuts served with sambhar and chutney (3 pieces)",
-                image: "assets/images/menu/appetizers/medu-vada.jpg",
-                isVeg: true,
-                isSpicy: false,
-                isPopular: true
-            },
             {
                 name: "Paneer Tikka",
                 price: 240,
@@ -381,15 +363,6 @@ const MENU_DATA = {
                 isVeg: false,
                 isSpicy: true,
                 isPopular: false
-            },
-            {
-                name: "Prawn Koliwada",
-                price: 350,
-                description: "Mumbai-style crispy prawns tossed in tangy spices",
-                image: "assets/images/menu/appetizers/prawn-koliwada.jpg",
-                isVeg: false,
-                isSpicy: true,
-                isPopular: false
             }
         ]
     },
@@ -505,15 +478,6 @@ const MENU_DATA = {
                 price: 200,
                 description: "Yellow lentils tempered with spices",
                 image: "assets/images/menu/main-course/dal-tadka.jpg",
-                isVeg: true,
-                isSpicy: false,
-                isPopular: false
-            },
-            {
-                name: "Dal Toy",
-                price: 210,
-                description: "Special dal preparation with mixed lentils",
-                image: "assets/images/menu/main-course/dal-toy.jpg",
                 isVeg: true,
                 isSpicy: false,
                 isPopular: false

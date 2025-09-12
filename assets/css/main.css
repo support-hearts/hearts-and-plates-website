@@ -1224,6 +1224,14 @@ body {
     transition: width 0.1s ease;
 }
 
+.features {
+    text-align: center;   /* centers text */
+    margin-top: 40px;
+  }
+  .features i {
+    display: block;
+    margin-bottom: 10px;
+  }
 /* Responsive Design */
 @media (max-width: 1200px) {
     .container {
