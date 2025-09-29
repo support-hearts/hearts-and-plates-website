@@ -372,26 +372,22 @@ class MenuPage {
                 filter: brightness(1.05);
             }
 
-            /* Responsive Design - IMPROVED */
+            /* Responsive Design - Single line on all devices */
             @media (max-width: 768px) {
                 .category-tabs {
-                    padding: 1rem;
-                    gap: 0.5rem;
+                    padding: 0.75rem;
+                    gap: 0.4rem;
                 }
 
                 .category-tab {
-                    padding: 0.6rem 1rem;
-                    font-size: 0.8rem;
-                    margin-bottom: 0.5rem;
-                    min-height: 40px;
+                    padding: 0.5rem 0.8rem;
+                    font-size: 0.75rem;
+                    min-height: 38px;
+                    flex: 0 0 auto;
                 }
 
                 .category-tab i {
                     font-size: 0.8rem;
-                }
-
-                .category-tab span {
-                    display: none; /* Hide text on mobile, show only icons */
                 }
 
                 .filter-pills {
@@ -426,15 +422,24 @@ class MenuPage {
 
             @media (max-width: 480px) {
                 .category-tabs {
-                    padding: 0.75rem;
-                    gap: 0.4rem;
+                    padding: 0.5rem;
+                    gap: 0.3rem;
                 }
 
                 .category-tab {
-                    padding: 0.5rem 0.75rem;
-                    font-size: 0.75rem;
-                    min-width: 50px;
+                    padding: 0.4rem 0.6rem;
+                    font-size: 0.7rem;
+                    min-width: auto;
                     justify-content: center;
+                    min-height: 36px;
+                }
+
+                .category-tab span {
+                    display: none; /* Hide text on very small screens */
+                }
+
+                .category-tab i {
+                    font-size: 0.9rem;
                 }
             }
 

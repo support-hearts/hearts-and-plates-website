@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Hall Booking | Hearts & Plates - Celebrate Your Special Day</title>
-    <meta name="description" content="Book our elegant birthday hall at Hearts & Plates for your special celebration. Perfect venue for intimate parties with customized decoration and catering.">
+    <title>Party Halls in Pondicherry | Hearts & Plates</title>
+    <meta name="description" content="Elegant, fully-equipped venues for birthdays, engagements, corporate meets, and family gatherings at Hearts & Plates.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,266 +14,217 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- CSS Files -->
+    <!-- CSS -->
     <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/components.css">
-    <link rel="stylesheet" href="../assets/css/responsive.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/images/icons/favicon.ico">
     
     <style>
-        .birthday-hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
-                        url('../assets/images/gallery/birthday-hall.jpg');
-            background-size: cover;
-            background-position: center;
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Page-specific styles */
+        .page-header {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 3rem 3rem;
             text-align: center;
-            position: relative;
-            margin-top: 80px;
         }
         
-        .birthday-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.2) 0%, transparent 50%);
-        }
-        
-        .birthday-hero-content {
-            z-index: 2;
-            max-width: 800px;
-            padding: 0 2rem;
-        }
-        
-        .birthday-hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+        .page-subtitle {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-secondary);
             margin-bottom: 1rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-weight: 500;
         }
         
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        
-        .feature-highlight {
-            background: var(--glass);
-            padding: 2rem;
-            border-radius: 16px;
-            text-align: center;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-        
-        .feature-highlight:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-        
-        .feature-highlight .icon {
+        .page-title {
+            font-family: var(--font-display);
             font-size: 3rem;
-            color: var(--primary);
+            font-weight: 600;
             margin-bottom: 1rem;
+            letter-spacing: -0.02em;
         }
         
-        .pricing-table {
-            background: var(--glass);
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 3rem 0;
-            border: 1px solid var(--border);
+        .page-description {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto;
         }
         
-        .pricing-header {
-            text-align: center;
-            margin-bottom: 2rem;
+        .halls-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem 4rem;
         }
         
-        .pricing-tiers {
+        .halls-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .hall-card {
+            background: var(--white);
+            border: 1px solid var(--border-gray);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .hall-card-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .hall-card-content {
+            padding: 2rem;
+        }
+        
+        .hall-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hall-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hall-feature-tag {
+            padding: 0.4rem 0.9rem;
+            background: var(--light-gray);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .hall-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .hall-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--border-gray);
+        }
+        
+        .btn-outline:hover {
+            background: var(--light-gray);
+        }
+        
+        .info-boxes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
         }
         
-        .pricing-tier {
-            background: var(--surface);
+        .info-box {
+            background: var(--white);
+            border: 1px solid var(--border-gray);
             border-radius: 12px;
             padding: 2rem;
-            text-align: center;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
         }
         
-        .pricing-tier.popular {
-            border-color: var(--primary);
-            position: relative;
-        }
-        
-        .pricing-tier.popular::before {
-            content: 'Most Popular';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--primary);
-            color: var(--background);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
+        .info-box h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
             font-weight: 600;
+            margin-bottom: 1.5rem;
         }
         
-        .price {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin: 1rem 0;
-        }
-        
-        .price-features {
+        .info-box ul {
             list-style: none;
-            margin: 1.5rem 0;
+            padding: 0;
         }
         
-        .price-features li {
+        .info-box li {
             padding: 0.5rem 0;
             color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
         
-        .price-features li i {
-            color: var(--success);
+        .info-box li::before {
+            content: "• ";
+            color: var(--primary);
+            font-weight: bold;
             margin-right: 0.5rem;
         }
         
-        .booking-form-section {
-            background: var(--gradient-dark);
-            padding: 4rem 0;
-        }
-        
-        .form-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--glass);
-            padding: 3rem;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-        }
-        
-        .google-form {
-            width: 100%;
-            height: 800px;
-            border: none;
-            border-radius: 12px;
-            background: white;
-        }
-        
-        .next-steps {
-            background: var(--surface);
-            padding: 3rem 0;
-        }
-        
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .step-card {
-            background: var(--glass);
-            padding: 2rem;
-            border-radius: 16px;
-            text-align: center;
-            border: 1px solid var(--border);
-            position: relative;
-        }
-        
-        .step-number {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 30px;
-            background: var(--primary);
-            color: var(--background);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-        }
-        
-        .gallery-section {
-            padding: 4rem 0;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .gallery-item {
-            aspect-ratio: 4/3;
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            background: var(--surface);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .info-box p {
             color: var(--text-secondary);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        .image-placeholder {
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        .image-placeholder i {
-            font-size: 3rem;
+            line-height: 1.7;
             margin-bottom: 1rem;
-            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .contact-buttons .btn {
+            flex: 1;
+            justify-content: center;
+        }
+        
+        @media (max-width: 1024px) {
+            .halls-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .info-boxes {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 5rem 1.5rem 2rem;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .halls-section {
+                padding: 0 1.5rem 3rem;
+            }
+            
+            .hall-buttons {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar scrolled" id="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="../index.html" class="logo">Hearts & Plates</a>
+            <a href="../index.html" class="logo">
+                <div class="logo-circle"></div>
+                Hearts & Plates
+            </a>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="birthday.html" class="active">Birthday Hall</a></li>
-                <li><a href="corporate.html">Corporate Events</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
+                <li><a href="birthday.html">Party Halls</a></li>
+                <li><a href="corporate.html">Catering</a></li>
+                <li><a href="about.html">About Us</a></li>
             </ul>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -283,353 +234,145 @@
         </div>
     </nav>
 
-    <!-- Birthday Hero Section -->
-    <section class="birthday-hero">
-        <div class="birthday-hero-content">
-            <h1 class="font-display">Birthday Celebrations</h1>
-            <p class="hero-subtitle">Make your special day unforgettable with our elegant birthday hall</p>
-            <p class="hero-description">
-                Create magical memories in our beautifully decorated birthday hall, perfect for intimate celebrations 
-                with personalized service and delicious cuisine.
-            </p>
-        </div>
+    <!-- Page Header -->
+    <section class="page-header">
+        <p class="page-subtitle">Events & Celebrations</p>
+        <h1 class="page-title">Party Halls in Pondicherry</h1>
+        <p class="page-description">
+            Elegant, fully-equipped venues for birthdays, engagements, corporate meets, and family gatherings.
+        </p>
     </section>
 
-    <!-- Features Section -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title font-display">Why Choose Our Birthday Hall?</h2>
-                <p class="section-subtitle">Everything you need for a perfect celebration</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-highlight">
-                    <div class="icon">
-                        <i class="fas fa-users"></i>
+    <!-- Halls Section -->
+    <section class="halls-section">
+        <div class="halls-grid">
+            <!-- Marina Hall -->
+            <div class="hall-card">
+                <img src="../assets/images/party hall.jpg" 
+                     alt="Marina Hall" 
+                     class="hall-card-image"
+                     onerror="this.style.background='linear-gradient(135deg, #1a1a1a 0%, #333 100%)'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='<i class=\'fas fa-building\' style=\'font-size:3rem;color:white;opacity:0.3;\'></i>';">
+                <div class="hall-card-content">
+                    <h3>Marina Hall</h3>
+                    <div class="hall-features">
+                        <span class="hall-feature-tag">Capacity: 15-25</span>
+                        <span class="hall-feature-tag">Stage</span>
+                        <span class="hall-feature-tag">Event Support</span>
                     </div>
-                    <h3>Perfect Capacity</h3>
-                    <p>Accommodates up to 50 guests comfortably with flexible seating arrangements</p>
-                </div>
-                
-                <div class="feature-highlight">
-                    <div class="icon">
-                        <i class="fas fa-magic"></i>
+                    <p class="hall-description">
+                        Perfect for receptions and milestone celebrations. Customizable décor and curated menus.
+                    </p>
+                    <div class="hall-buttons">
+                        <a href="tel:+917305207180" class="btn btn-primary">Call to Book</a>
+                        <a href="mailto:events@heartsandplates.in" class="btn btn-outline">Email Us</a>
                     </div>
-                    <h3>Custom Decorations</h3>
-                    <p>Personalized decorations and themes to match your celebration style</p>
-                </div>
-                
-                <div class="feature-highlight">
-                    <div class="icon">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <h3>Delicious Catering</h3>
-                    <p>Customized menu options from our award-winning kitchen</p>
-                </div>
-                
-                <div class="feature-highlight">
-                    <div class="icon">
-                        <i class="fas fa-music"></i>
-                    </div>
-                    <h3>Audio System</h3>
-                    <p>Professional sound system for music and announcements</p>
-                </div>
-                
-                <!-- <div class="feature-highlight">
-                    <div class="icon">
-                        <i class="fas fa-parking"></i>
-                    </div>
-                    <h3>Free Parking</h3>
-                    <p>Complimentary parking space for all your guests</p>
-                </div> -->
-                
-                <div class="feature-highlight">
-                    <div class="icon">
-                        <i class="fas fa-concierge-bell"></i>
-                    </div>
-                    <h3>Dedicated Service</h3>
-                    <p>Personal event coordinator to ensure everything runs smoothly</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Pricing Section -->
-    <section class="section" style="background: var(--surface);">
-        <div class="container">
-            <div class="pricing-table">
-                <div class="pricing-header">
-                    <h2 class="section-title font-display">Birthday Packages</h2>
-                    <p class="section-subtitle">Choose the perfect package for your celebration</p>
-                </div>
-                
-                <div class="pricing-tiers">
-                    <div class="pricing-tier">
-                        <h3>Basic Package</h3>
-                        <p class="text-muted">Up to 25 guests</p>
-                        <ul class="price-features">
-                            <li><i class="fas fa-check"></i> 4-hour hall rental</li>
-                            <li><i class="fas fa-check"></i> Basic decorations</li>
-                            <li><i class="fas fa-check"></i> Sound system</li>
-                            <li><i class="fas fa-check"></i> Birthday cake (1kg)</li>
-                            <li><i class="fas fa-check"></i> Complimentary snacks</li>
-                        </ul>
+            <!-- Mylapore Hall -->
+            <div class="hall-card">
+                <img src="../assets/images/gallery/birthday-hall.jpg" 
+                     alt="Mylapore Hall" 
+                     class="hall-card-image"
+                     onerror="this.style.background='linear-gradient(135deg, #1a1a1a 0%, #333 100%)'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='<i class=\'fas fa-building\' style=\'font-size:3rem;color:white;opacity:0.3;\'></i>';">
+                <div class="hall-card-content">
+                    <h3>Hall 2</h3>
+                    <div class="hall-features">
+                        <span class="hall-feature-tag">Capacity: 25-45</span>
+                        <span class="hall-feature-tag">Green Room</span>
+                        <span class="hall-feature-tag">Catering Onsite</span>
                     </div>
-                    
-                    <div class="pricing-tier popular">
-                        <h3>Premium Package</h3>
-                        <p class="text-muted">Up to 40 guests</p>
-                        <ul class="price-features">
-                            <li><i class="fas fa-check"></i> 6-hour hall rental</li>
-                            <li><i class="fas fa-check"></i> Premium decorations</li>
-                            <li><i class="fas fa-check"></i> DJ & sound system</li>
-                            <li><i class="fas fa-check"></i> Custom birthday cake (2kg)</li>
-                            <li><i class="fas fa-check"></i> Full meal service</li>
-                            <li><i class="fas fa-check"></i> Photography setup area</li>
-                            <li><i class="fas fa-check"></i> Dedicated coordinator</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="pricing-tier">
-                        <h3>Deluxe Package</h3>
-                        <p class="text-muted">Up to 50 guests</p>
-                        <ul class="price-features">
-                            <li><i class="fas fa-check"></i> Full day hall rental</li>
-                            <li><i class="fas fa-check"></i> Luxury decorations</li>
-                            <li><i class="fas fa-check"></i> Live music setup</li>
-                            <li><i class="fas fa-check"></i> Multi-tier custom cake</li>
-                            <li><i class="fas fa-check"></i> Buffet with premium menu</li>
-                            <li><i class="fas fa-check"></i> Professional photography</li>
-                            <li><i class="fas fa-check"></i> Party favors for guests</li>
-                            <li><i class="fas fa-check"></i> VIP service</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="text-center mt-4">
-                    <p class="text-muted">*Prices may vary based on menu selection and additional requirements</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="gallery-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title font-display">Our Birthday Hall</h2>
-                <p class="section-subtitle">See where your celebration will come to life</p>
-            </div>
-            
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="../assets/images/gallery/birthday-hall.jpg" 
-                         alt="Birthday Hall Interior"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="image-placeholder" style="display: none;">
-                        <i class="fas fa-birthday-cake"></i>
-                        <p>Birthday Hall<br><small>Add: birthday-hall.jpg</small></p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="../assets/images/gallery/birthday-setup-1.jpg" 
-                         alt="Birthday Decoration Setup"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="image-placeholder" style="display: none;">
-                        <i class="fas fa-gifts"></i>
-                        <p>Decoration Setup<br><small>Add: birthday-setup-1.jpg</small></p>
-                    </div>
-                </div>                
-                <div class="gallery-item">
-                    <img src="../assets/images/gallery/birthday-cake-display.jpg" 
-                         alt="Birthday Cake Display"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="image-placeholder" style="display: none;">
-                        <i class="fas fa-cake-candles"></i>
-                        <p>Cake Display<br><small>Add: birthday-cake-display.jpg</small></p>
+                    <p class="hall-description">
+                        Ideal for intimate gatherings, corporate offsites, and family events with premium service.
+                    </p>
+                    <div class="hall-buttons">
+                        <a href="tel:+917305207180" class="btn btn-primary">Call to Book</a>
+                        <a href="mailto:events@heartsandplates.in" class="btn btn-outline">Email Us</a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Booking Form Section -->
-    <section class="booking-form-section">
-        <div class="container">
-            <div class="form-container">
-                <div class="text-center mb-4">
-                    <h2 class="section-title font-display">Book Your Birthday Celebration</h2>
-                    <p class="section-subtitle">Fill out the form below and we'll contact you within 24 hours</p>
-                </div>
-                
-                <!-- Google Form Embed -->
-                <iframe class="google-form" 
-                        src="https://docs.google.com/forms/d/e/YOUR_BIRTHDAY_FORM_ID/viewform?embedded=true"
-                        frameborder="0" marginheight="0" marginwidth="0">
-                    Loading...
-                </iframe>
-                
-                <div class="mt-4 p-3" style="background: rgba(212, 175, 55, 0.1); border-radius: 12px; border: 1px solid var(--border);">
-                    <h4 style="color: var(--primary); margin-bottom: 1rem; text-align: center;">
-                        <i class="fas fa-info-circle"></i> Important Information
-                    </h4>
-                    <ul style="color: var(--text-secondary); text-align: left; margin: 0; padding-left: 1.5rem;">
-                        <li>Advance booking required (minimum 7 days)</li>
-                        <li>50% advance payment to confirm booking</li>
-                        <li>Decorations can be customized based on theme</li>
-                        <li>Outside food and beverages not permitted</li>
-                        <li>Sound system available until 10:00 PM</li>
-                    </ul>
-                </div>
+        <!-- Info Boxes -->
+        <div class="info-boxes">
+            <div class="info-box">
+                <h3>Amenities</h3>
+                <ul>
+                    <li>Professional sound system & wireless mics</li>
+                    <li>Custom décor & floral arrangements</li>
+                    <li>Dedicated event manager</li>
+                </ul>
             </div>
-        </div>
-    </section>
 
-    <!-- Next Steps Section -->
-    <section class="next-steps">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title font-display">What Happens Next?</h2>
-                <p class="section-subtitle">Your journey to the perfect birthday celebration</p>
+            <div class="info-box">
+                <h3>Food & Beverage</h3>
+                <ul>
+                    <li>South Indian, North Indian, Chinese, Continental</li>
+                    <li>Pure veg and non-veg menus</li>
+                    <li>Live counters and dessert stations</li>
+                    <li>Mocktails and beverages</li>
+                </ul>
             </div>
-            
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Submit Form</h3>
-                    <p>Fill out our booking form with your celebration details and preferences</p>
-                </div>
-                
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>We Contact You</h3>
-                    <p>Our event coordinator will call you within 24 hours to discuss requirements</p>
-                </div>
-                
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Customize Package</h3>
-                    <p>We'll work together to customize the perfect package for your celebration</p>
-                </div>
-                
-                <div class="step-card">
-                    <div class="step-number">4</div>
-                    <h3>Confirm Booking</h3>
-                    <p>Secure your date with advance payment and finalize all details</p>
-                </div>
-                
-                <div class="step-card">
-                    <div class="step-number">5</div>
-                    <h3>Celebrate!</h3>
-                    <p>Enjoy your perfect birthday celebration while we take care of everything</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="section text-center" style="background: var(--gradient-dark);">
-        <div class="container">
-            <h2 class="section-title font-display">Ready to Plan Your Birthday?</h2>
-            <p class="section-subtitle">Let's create unforgettable memories together</p>
-            <div class="mt-4">
-                <a href="#booking-form" class="btn btn-primary btn-lg">
-                    <i class="fas fa-calendar-plus"></i> Book Your Celebration
-                </a>
-                <a href="javascript:void(0)" id="whatsapp-inquiry" class="btn btn-secondary btn-lg">
-                    <i class="fab fa-whatsapp"></i> Quick Inquiry
-                </a>
+            <div class="info-box">
+                <h3>Booking Info</h3>
+                <p>Share your date, guest count, and preferences. We'll craft a tailored package for your event.</p>
+                <div class="contact-buttons">
+                    <a href="mailto:support@hearts-and-plates.com" class="btn btn-outline">support@hearts-and-plates.com</a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3 class="font-display">Hearts & Plates</h3>
-                    <p>Where every meal tells a story and every moment becomes a cherished memory.</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="Google Reviews"><i class="fab fa-google"></i></a>
-                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="../index.html">Home</a></li>
-                        <li><a href="menu.html">Menu</a></li>
-                        <li><a href="birthday.html">Birthday Hall</a></li>
-                        <li><a href="corporate.html">Corporate Events</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Event Services</h4>
-                    <ul>
-                        <li><a href="birthday.html">Birthday Parties</a></li>
-                        <!-- <li><a href="corporate.html">Corporate Events</a></li> -->
-                        <li><a href="../index.html#contact">Private Dining</a></li>
-                        <li><a href="menu.html">Catering Services</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> 51 B, First Floor<br>Mission Street, Pondicherry</p>
-                    <p><i class="fas fa-envelope"></i> events@heartsandplates.com</p>
-                    <p><i class="fas fa-phone"></i> Call for bookings</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Hearts & Plates</h4>
+                <p>Multi-cuisine restaurant in the heart of Pondicherry.</p>
+                <p style="margin-top: 1rem;">51 B, First Floor<br>Mission Street, Pondicherry</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/hearts_and_plates" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://g.page/r/CZ8rOB4VQ65-EAE/review" aria-label="Google">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="https://wa.me/917305207180" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Hearts and Plates. All rights reserved. | Crafted with ❤️ for celebrations</p>
+            
+            <div class="footer-section">
+                <h4>Hours</h4>
+                <p>Mon-Fri: 12:00 PM – 11:00 PM</p>
+                <p>Sat-Sun: 11:30 AM – 11:30 PM</p>
+                <p><em>"We are closed on Tuesdays"</em></p>
             </div>
+            
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Phone: +91 7305207180</p>
+                <p>Email: support@hearts-and-plates.com</p>
+                <p><a href="https://www.google.com/maps/place/Hearts+and+Plates+Restaurant/@11.939465,79.8293721,17z/data=!3m1!4b1!4m6!3m5!1s0x3a53634e21b369df:0x7eae43151e382b9f!8m2!3d11.9394598!4d79.831947!16s%2Fg%2F11yg1wk8qq?entry=ttu&g_ep=EgoyMDI1MDkyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank">Get Directions</a></p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2025 Hearts & Plates. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- JavaScript Files -->
-    <script src="../config/site-config.js"></script>
-    <script src="../assets/js/navigation.js"></script>
+    <!-- JavaScript -->
+    <script src="assets/js/navigation.js"></script>
     <script>
-        // Birthday page specific functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            // Update page title
-            if (window.SITE_HELPERS) {
-                window.SITE_HELPERS.updatePageTitle('Birthday Hall Booking');
-            }
-            
-            // WhatsApp inquiry button
-            const whatsappBtn = document.getElementById('whatsapp-inquiry');
-            if (whatsappBtn && window.SITE_HELPERS) {
-                whatsappBtn.addEventListener('click', () => {
-                    const message = "Hello! I'm interested in booking your birthday hall. Could you please provide more information about availability and pricing?";
-                    const whatsappLink = window.SITE_HELPERS.getWhatsAppLink(message);
-                    window.open(whatsappLink, '_blank');
-                });
-            }
-            
-            // Smooth scroll for CTA buttons
-            const ctaButtons = document.querySelectorAll('a[href="#booking-form"]');
-            ctaButtons.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const formSection = document.querySelector('.booking-form-section');
-                    if (formSection) {
-                        formSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
+        // Simple cuisine tab functionality
+        document.querySelectorAll('.cuisine-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.cuisine-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
             });
-            
-            // Load Google Form URL from config
-            const googleForm = document.querySelector('.google-form');
-            if (googleForm && window.SITE_CONFIG) {
-                const formUrl = window.SITE_CONFIG.forms.birthday.url;
-                if (formUrl) {
-                    googleForm.src = formUrl;
-                }
-            }
         });
     </script>
 </body>
